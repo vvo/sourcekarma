@@ -8,8 +8,20 @@
     "start": "next start"
   },
   "dependencies": {
+    "@tailwindcss/aspect-ratio": "0.2.0",
+    "@tailwindcss/forms": "0.2.1",
+    "@tailwindcss/typography": "0.4.0",
+    "autoprefixer": "10.2.4",
+    "graphql": "15.5.0",
+    "graphql-request": "3.4.0",
     "next": "10.0.7",
+    "postcss": "8.2.6",
     "react": "17.0.1",
-    "react-dom": "17.0.1"
+    "react-dom": "17.0.1",
+    "swr": "0.4.2",
+    "tailwindcss": "2.0.3"
+  },
+  "engines": {
+    "node": "14.x"
   }
 }
