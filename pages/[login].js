@@ -65,7 +65,8 @@ export default function UserPage({
           <div className="text-gray-700 text-lg text-center mb-20 p-5 sm:p-10 rounded-2xl border sm:mx-10 shadow-md">
             {/* <div className="absolute inset-0 loading z-0 opacity-50 rounded-full"></div> */}
             <p className="relative z-10">
-              ⏳ Page generation can take up to 30 seconds. <br />
+              ⏳ Please wait while we&apos;re generating your stats. It can take
+              up to 30 seconds. <br />
               <br />
               While you&apos;re here you can follow me on Twitter{" "}
               <a
@@ -330,10 +331,10 @@ export async function getStaticProps(context) {
     };
   }
 
-  const { results: comments, hadError } = await fetchGitHubData(
-    login,
-    res.rows[0].access_token
-  );
+  const { results: comments, hadError } =
+    process.env.APP_ENV === "development"
+      ? JSON.parse(require("fs").readFileSync("data.json"))
+      : await fetchGitHubData(login, res.rows[0].access_token);
 
   // require("fs").writeFileSync(
   //   "data.json",

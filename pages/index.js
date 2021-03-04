@@ -118,7 +118,7 @@ function LoginButtons() {
     <>
       <LoginButton />
       <Link href="/vvo">
-        <a>
+        <a className="inline-flex">
           <button
             type="button"
             className="ml-3 inline-flex items-center px-5 py-2.5 border border-gray-300 shadow-sm text-base font-medium rounded-md text-teal-700 bg-white hover:bg-gray-50 hover:text-teal-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
