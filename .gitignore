@@ -32,3 +32,8 @@ yarn-error.log*
 
 # vercel
 .vercel
+
+data.json
+postgres-data
+.vscode
+.overmind.sock

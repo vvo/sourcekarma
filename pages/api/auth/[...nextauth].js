@@ -8,16 +8,25 @@ export default NextAuth({
       clientId: process.env.GITHUB_ID,
       clientSecret: process.env.GITHUB_SECRET,
       scope: "",
+      profile: (profile) => {
+        return {
+          id: profile.id,
+          name: profile.login,
+        };
+      },
     }),
   ],
+  session: {
+    jwt: true,
+  },
   secret: process.env.NEXTAUTH_SECRET,
   jwt: {
     encryption: true,
     secret: process.env.NEXTAUTH_JWE_SECRET,
   },
+  database: process.env.DATABASE_URL,
   callbacks: {
     async session(session, token) {
-      // console.log(session, token)
       if (token?.accessToken) {
         // Add property to session, like an access_token from a provider
         session.accessToken = token.accessToken;

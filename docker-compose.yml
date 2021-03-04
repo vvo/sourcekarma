@@ -1,0 +1,13 @@
+version: "3.8"
+services:
+  db:
+    image: postgres:12.5-alpine
+    ports:
+      - "55320:5432"
+    environment:
+      POSTGRES_USER: sourcekarma
+      POSTGRES_PASSWORD: sourcekarma
+      POSTGRES_DB: sourcekarma
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
+    command: ["postgres", "-c", "log_statement=all"] # Log SQL queries to stdout

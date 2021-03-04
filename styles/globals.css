@@ -3,6 +3,21 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+  .loading {
+    @apply animate-pulse bg-teal-200 text-teal-200 rounded pointer-events-none;
+  }
+  @variants group-hover, hover, responsive {
+    .filter-grayscale {
+      filter: grayscale(100%);
+    }
+
+    .filter-none {
+      filter: none;
+    }
+  }
+}
+
 @font-face {
   font-family: "Inter var";
   font-weight: 100 900;
