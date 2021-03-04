@@ -7,7 +7,7 @@ export default function Header() {
   const [session] = useSession();
 
   return (
-    <div className="flex items-center mb-20">
+    <div className="flex items-center mb-12 sm:mb-20">
       <Link href="/">
         <a
           className="flex items-center"

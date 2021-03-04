@@ -17,6 +17,8 @@ export default function Profile({
       <a
         href={`https://github.com/${login}`}
         className="text-teal-600 hover:text-indigo-600 underline hover:no-underline mt-6 sm:mt-0"
+        target="_blank"
+        rel="noopener"
       >
         <h1 className="text-2xl sm:text-4xl font-medium sm:font-semibold tracking-tight">
           @{login}

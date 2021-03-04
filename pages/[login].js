@@ -2,7 +2,7 @@ import { Client } from "pg";
 import { graphql } from "@octokit/graphql";
 import orderBy from "lodash/orderBy";
 import { useRouter } from "next/router";
-import { useSession } from "next-auth/client";
+import { signIn, useSession } from "next-auth/client";
 import GitHubIcon from "../svg/github.svg";
 import ChevronRightIcon from "../svg/chevron-right.svg";
 import TwitterLogo from "../svg/twitter.svg";
@@ -54,7 +54,7 @@ export default function UserPage({
   const isCurrentUser = session?.user.name === login;
 
   return (
-    <div className={cx("pt-10", loading && "overflow-y-scroll")}>
+    <div className={cx("sm:pt-8", loading && "overflow-y-scroll")}>
       <Head>
         <meta name="robots" content="noindex" />
       </Head>
@@ -118,8 +118,9 @@ export default function UserPage({
           />
         </div>
         {hadError && (
-          <p className="mt-10 -mb-10 text-sm text-center text-gray-500">
-            ⚠️ Our crawler stopped early because of a{" "}
+          <p className="mt-10 sm:-mb-10 text-sm text-center text-gray-500">
+            ⚠️ Our crawler stopped early <br className="sm:hidden" />
+            because of a{" "}
             <a
               href="https://github.com/vvo/sourcekarama/issues/1"
               target="_blank"
@@ -215,12 +216,12 @@ function Tweet({ totalComments, reactions }) {
   return (
     <a
       href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(
-        `I received ${formatNumber(
-          reactions.THUMBS_UP
-        )} 👍 on the ${formatNumber(totalComments)}`
-      )} comments I posted on @GitHub. Nice!%0a%0aCheck-out more stats and create your own karma page at ${
+        `I received ${formatNumber(reactions.THUMBS_UP)}👍 and ${formatNumber(
+          reactions.THUMBS_DOWN
+        )}👎 on the ${formatNumber(totalComments)}`
+      )} comments I posted on @GitHub. Nice!%0a%0aDig your own stats (including funniest comments 😂) and discover how people react to you at ${
         process.env.NEXT_PUBLIC_BASE_URL
-      }/${login}.`}
+      }/${login}.%0a%0a❤️ %23SourceKarma`}
       target="_blank"
       rel="noopener"
     >
@@ -329,18 +330,18 @@ export async function getStaticProps(context) {
     };
   }
 
-  // const { results: comments, hadError } = await fetchGitHubData(
-  //   login,
-  //   res.rows[0].access_token
-  // );
+  const { results: comments, hadError } = await fetchGitHubData(
+    login,
+    res.rows[0].access_token
+  );
 
   // require("fs").writeFileSync(
   //   "data.json",
   //   JSON.stringify({ comments, hadError }, null, 2)
   // );
-  const { comments, hadError } = JSON.parse(
-    require("fs").readFileSync("data.json")
-  );
+  // const { comments, hadError } = JSON.parse(
+  //   require("fs").readFileSync("data.json")
+  // );
   const reactions = {
     THUMBS_UP: 0,
     THUMBS_DOWN: 0,
@@ -439,7 +440,8 @@ export async function getStaticProps(context) {
 
 export async function getStaticPaths() {
   return {
-    paths: [{ params: { login: "vvo" } }],
+    // paths: [{ params: { login: "vvo" } }],
+    paths: [],
     fallback: true,
   };
 }

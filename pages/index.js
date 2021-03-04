@@ -5,29 +5,26 @@ import Link from "next/link";
 import Reactions from "../components/Reactions";
 import Profile from "../components/Profile";
 
-// publish to PH, Show HN, made with next, made with tailwind, twitter rauchg
-// read about CDN cache vercel + incremental static (leerob) careful not rebuilding pages at every new release
+// test incremental generation: is the page still generated after deploy? (deactivate my own page in paths)
 
-// rename to source karma
-// create database on AWS
-// deploy to Vercel
+// create the issue abotu error graphql
+// remove read file sync before going to production (and any forced value)
 
-// meta tags index page
+// meta tags index page (+title)
 // social image index page (arrow like)
+// meta tags login page (+title)
+// show twitter feed on homepage (manually selected tweets)
 
-// meta tags login page
 // social image login page (generation ?) if too complex: no
-
-// github badge
-
-// change twitter text to include funny comments
+// github badge: maybe later or if social login easy
 // dark mode
+// ability to delete account
+
+// publish to PH, Show HN, made with next, made with tailwind, twitter rauchg
+
 // faq contains which data is stored and used, obvious questions and possible errors, limitations, errors, since when are we counting, when is it updated, where is the code
 // add noindex on profile pages
-// Update readme
-// create the issue abotu error graphql
-
-// ability to delete account
+// Update readme + logo / hero on github repository
 
 export default function Home() {
   const [session] = useSession();
@@ -36,16 +33,16 @@ export default function Home() {
     <div className="max-w-screen-2xl mx-auto py-10 px-2.5 lg:px-10">
       <div className="flex sm:flex-row sm:items-center flex-col-reverse">
         <div className="sm:w-1/2">
-          <h1 className="text-center sm:text-left mt-8 sm:mt-0 text-5xl lg:text-7xl xl:text-8xl font-extrabold tracking-tight text-gray-900">
+          <h1 className="text-center sm:text-left mt-12 sm:mt-0 text-5xl lg:text-7xl xl:text-8xl font-extrabold tracking-tight text-gray-900">
             Source <span className="text-teal-700">Karma</span>
           </h1>
 
-          <p className="text-gray-700 text-lg text-center sm:text-left sm:text-xl mt-6 sm:w-4/5">
+          <p className="text-gray-700 text-lg text-center sm:text-left sm:text-xl mt-12 sm:mt-8 sm:w-4/5">
             Discover how people react to you on GitHub. Create and share your
             open-source karma score card.
           </p>
 
-          <div className="mt-10 flex justify-center sm:justify-start">
+          <div className="mt-12 flex justify-center sm:justify-start">
             {!session && <LoginButtons />}
             {session && <LoggedInButtons />}
           </div>
@@ -64,7 +61,7 @@ export default function Home() {
         Here's a preview of what you&apos;ll get 👇
       </h2>
 
-      <div className="relative mt-12 sm:mt-20">
+      <div className="relative mt-16 sm:mt-20">
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white"></div>
         <div className="flex flex-col items-center sm:items-stretch sm:flex-row space-y-10 sm:space-y-0 sm:justify-center pointer-events-none max-w-6xl mx-auto">
           <Profile
@@ -90,7 +87,11 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="text-center mt-24">{!session && <LoginButton />}</div>
+      {!session && (
+        <div className="text-center mt-24">
+          <LoginButton />
+        </div>
+      )}
     </div>
   );
 }

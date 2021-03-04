@@ -1,4 +1,4 @@
-import Header from "../components/header";
+import Header from "../components/Header";
 import NotFoundIllustration from "../svg/not-found.svg";
 
 export default function Custom404() {

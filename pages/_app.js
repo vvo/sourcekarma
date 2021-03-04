@@ -1,9 +1,33 @@
+import * as Fathom from "fathom-client";
 import "../styles/globals.css";
 import { Provider } from "next-auth/client";
 import Head from "next/head";
 import GitHubIcon from "../svg/github.svg";
+import { useEffect } from "react";
+import { useRouter } from "next/router";
 
 function MyApp({ Component, pageProps }) {
+  const router = useRouter();
+
+  useEffect(() => {
+    // Initialize Fathom when the app loads
+    Fathom.load("WQAQJZZG", {
+      includedDomains: ["sourcekarma.vercel.app"],
+      url: "https://rhinoceros.codeagain.com/script.js",
+    });
+
+    function onRouteChangeComplete() {
+      Fathom.trackPageview();
+    }
+    // Record a pageview when route changes
+    router.events.on("routeChangeComplete", onRouteChangeComplete);
+
+    // Unassign event listener
+    return () => {
+      router.events.off("routeChangeComplete", onRouteChangeComplete);
+    };
+  });
+
   return (
     <Provider session={pageProps.session}>
       <Head>
@@ -29,7 +53,7 @@ function MyApp({ Component, pageProps }) {
 
       <Component {...pageProps} />
 
-      <div className="relative h-1 mx-auto mt-20 pt-6">
+      <div className="relative h-1 mx-auto mt-12 sm:mt-20 pt-6">
         <div
           className="absolute px-5 inset-0 flex items-center"
           aria-hidden="true"
@@ -43,7 +67,7 @@ function MyApp({ Component, pageProps }) {
           <p className="text-center text-base font-semibold uppercase text-gray-600 tracking-wider">
             My other projects
           </p>
-          <div className="mt-6 grid grid-cols-2 gap-0.5 lg:mt-12">
+          <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-0.5 lg:mt-12">
             <div className="col-span-1 flex justify-center py-8 px-8 bg-gray-50">
               <a
                 href="https://nextjsnews.com"
