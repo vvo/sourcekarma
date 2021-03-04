@@ -33,9 +33,13 @@ export default function Home() {
     <div className="max-w-screen-2xl mx-auto py-10 px-2.5 lg:px-10">
       <div className="flex sm:flex-row sm:items-center flex-col-reverse">
         <div className="sm:w-1/2">
-          <h1 className="text-center sm:text-left mt-12 sm:mt-0 text-5xl lg:text-7xl xl:text-8xl font-extrabold tracking-tight text-gray-900">
-            Source <span className="text-teal-700">Karma</span>
-          </h1>
+          <Link href="/">
+            <a>
+              <h1 className="text-center sm:text-left mt-12 sm:mt-0 text-5xl lg:text-7xl xl:text-8xl font-extrabold tracking-tight text-gray-900">
+                Source <span className="text-teal-700">Karma</span>
+              </h1>
+            </a>
+          </Link>
 
           <p className="text-gray-700 text-lg text-center sm:text-left sm:text-xl mt-12 sm:mt-8 sm:w-4/5">
             Discover how people react to you on GitHub. Create and share your

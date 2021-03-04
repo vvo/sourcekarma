@@ -441,8 +441,7 @@ export async function getStaticProps(context) {
 
 export async function getStaticPaths() {
   return {
-    // paths: [{ params: { login: "vvo" } }],
-    paths: [],
+    paths: [{ params: { login: "vvo" } }],
     fallback: true,
   };
 }
