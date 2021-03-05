@@ -30,11 +30,6 @@ export default function Error() {
   );
 }
 
-Error.getInitialProps = ({ res, err }) => {
-  const statusCode = res ? res.statusCode : err ? err.statusCode : 404;
-  return { statusCode, err };
-};
-
 Error.getLayout = function getLayout(page) {
   return <PageLayout>{page}</PageLayout>;
 };
