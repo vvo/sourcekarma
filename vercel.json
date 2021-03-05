@@ -1,7 +1,7 @@
 {
   "regions": ["iad1"],
   "functions": {
-    "pages/api/[login]/og.js": {
+    "api/[login]/og.js": {
       "memory": 2048
     }
   }
