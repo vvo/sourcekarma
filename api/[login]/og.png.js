@@ -31,8 +31,10 @@ export default async function (req, res) {
     res.end(screenshot);
   } catch (error) {
     try {
-      browser.close();
+      await browser.close();
     } catch (_) {}
+
+    console.error(error);
 
     res.status(500).end();
   }
