@@ -1,0 +1,8 @@
+{
+  "regions": ["iad1"],
+  "functions": {
+    "api/[login].png.js": {
+      "memory": 2048
+    }
+  }
+}

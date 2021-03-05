@@ -28,6 +28,9 @@
     "react-dom": "17.0.1",
     "tailwindcss": "2.0.3"
   },
+  "workspaces": [
+    "pupeeter"
+  ],
   "engines": {
     "node": "14.x"
   },
