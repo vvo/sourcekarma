@@ -4,19 +4,13 @@ import GitHubIcon from "../svg/github.svg";
 import Link from "next/link";
 import Reactions from "../components/Reactions";
 import Profile from "../components/Profile";
-
-// test incremental generation: is the page still generated after deploy? (deactivate my own page in paths)
-
-// create the issue abotu error graphql
-// remove read file sync before going to production (and any forced value)
+import PageLayout from "../components/layouts/PageLayout";
 
 // meta tags index page (+title)
 // social image index page (arrow like)
-// meta tags login page (+title)
-// show twitter feed on homepage (manually selected tweets)
 
-// social image login page (generation ?) if too complex: no
-// github badge: maybe later or if social login easy
+// show twitter feed on homepage (manually selected tweets)
+// ability to get markdown of a github badge: need to create a different badge (no picture) and another api route, doable
 // dark mode
 // ability to delete account
 
@@ -25,6 +19,9 @@ import Profile from "../components/Profile";
 // faq contains which data is stored and used, obvious questions and possible errors, limitations, errors, since when are we counting, when is it updated, where is the code
 // add noindex on profile pages
 // Update readme + logo / hero on github repository
+// check accessibility measure.dev
+// vercel memory size
+// install only prod deps
 
 export default function Home() {
   const [session] = useSession();
@@ -100,6 +97,10 @@ export default function Home() {
   );
 }
 
+Home.getLayout = function getLayout(page) {
+  return <PageLayout>{page}</PageLayout>;
+};
+
 function LoginButton() {
   return (
     <button
@@ -146,6 +147,7 @@ function YourPageButton({ login }) {
           <img
             src={`https://github.com/${login}.png`}
             className="-ml-1 mr-3 h-7 w-7 rounded-full"
+            alt={`GitHub avatar for ${login}`}
           />
           See your page
         </button>

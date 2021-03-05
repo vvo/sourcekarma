@@ -8,6 +8,7 @@ CREATE TABLE accounts
     provider_account_id  VARCHAR(255) NOT NULL,
     refresh_token        TEXT,
     access_token         TEXT,
+    data                 JSONB,
     access_token_expires TIMESTAMPTZ,
     created_at           TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at           TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,

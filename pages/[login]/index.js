@@ -3,16 +3,17 @@ import { graphql } from "@octokit/graphql";
 import orderBy from "lodash/orderBy";
 import { useRouter } from "next/router";
 import { signIn, useSession } from "next-auth/client";
-import GitHubIcon from "../svg/github.svg";
-import ChevronRightIcon from "../svg/chevron-right.svg";
-import TwitterLogo from "../svg/twitter.svg";
+import GitHubIcon from "../../svg/github.svg";
+import ChevronRightIcon from "../../svg/chevron-right.svg";
+import TwitterLogo from "../../svg/twitter.svg";
 import cx from "classnames";
-import Header from "../components/Header.js";
-import Reactions from "../components/Reactions.js";
-import Profile from "../components/Profile.js";
-import { reactionsMetadata } from "../lib/reactions.js";
-import formatNumber from "../lib/formatNumber.js";
+import Header from "../../components/Header.js";
+import Reactions from "../../components/Reactions.js";
+import Profile from "../../components/Profile.js";
+import { reactionsMetadata } from "../../lib/reactions.js";
+import formatNumber from "../../lib/formatNumber.js";
 import Head from "next/head";
+import PageLayout from "../../components/layouts/PageLayout";
 
 const reactionsReleaseDate = "2016-03-10T00:00:00Z";
 
@@ -49,14 +50,30 @@ export default function UserPage({
 }) {
   const router = useRouter();
   const { login = "octocat" } = router.query;
+  // router.isFallback = true;
   const loading = router.isFallback === true;
   const [session] = useSession();
   const isCurrentUser = session?.user.name === login;
+  const title = `@${login}'s GitHub reactions score card - Source Karma`;
+  const url = `${process.env.NEXT_PUBLIC_BASE_URL}/${login}`;
+  const description =
+    "Discover how people react to you on GitHub. Create and share your open-source karma score card.";
+  const socialImage = `https://sourcekarma-dev.eu.ngrok.io/api/${login}/og`;
 
   return (
     <div className={cx("sm:pt-8", loading && "overflow-y-scroll")}>
       <Head>
         <meta name="robots" content="noindex" />
+        <title>{title}</title>
+        <link href={url} rel="canonical" />
+        <meta content={title} name="title" />
+        <meta content={description} name="description" />
+        <meta content="website" property="og:type" />
+        <meta content={title} property="og:title" />
+        <meta content={description} property="og:description" />
+        <meta content={socialImage} property="og:image" />
+        <meta content={url} property="og:url" />
+        <meta content="summary_large_image" property="twitter:card" />
       </Head>
 
       <div className="max-w-screen-lg mx-auto px-2.5 relative">
@@ -65,7 +82,7 @@ export default function UserPage({
           <div className="text-gray-700 text-lg text-center mb-20 p-5 sm:p-10 rounded-2xl border sm:mx-10 shadow-md">
             {/* <div className="absolute inset-0 loading z-0 opacity-50 rounded-full"></div> */}
             <p className="relative z-10">
-              ⏳ Please wait while we&apos;re generating your stats. It can take
+              ⏳ Please wait while we&apos;re generating this page. It can take
               up to 30 seconds. <br />
               <br />
               While you&apos;re here you can follow me on Twitter{" "}
@@ -123,7 +140,7 @@ export default function UserPage({
             ⚠️ Our crawler stopped early <br className="sm:hidden" />
             because of a{" "}
             <a
-              href="https://github.com/vvo/sourcekarama/issues/1"
+              href="https://github.com/vvo/sourcekarma/issues/1"
               target="_blank"
               rel="noopener"
               className="underline hover:no-underline hover:text-indigo-500"
@@ -139,13 +156,15 @@ export default function UserPage({
         )}
       </div>
       {!loading && (
-        <div className="bg-teal-50 py-16 sm:py-20 mt-20 sm:mt-28 space-y-10">
-          <CommentsSections
-            mostPopularComments={mostPopularComments}
-            leastPopularComments={leastPopularComments}
-            funniestComments={funniestComments}
-          />
-          <div className="text-center relative top-8 sm:top-12 h-0">
+        <div className="bg-teal-50 py-20 mt-8 sm:mt-28">
+          <div className="space-y-10">
+            <CommentsSections
+              mostPopularComments={mostPopularComments}
+              leastPopularComments={leastPopularComments}
+              funniestComments={funniestComments}
+            />
+          </div>
+          <div className="text-center relative top-12 h-0">
             {isCurrentUser ? (
               <Tweet totalComments={totalComments} reactions={reactions} />
             ) : (
@@ -157,6 +176,10 @@ export default function UserPage({
     </div>
   );
 }
+
+UserPage.getLayout = function getLayout(page) {
+  return <PageLayout>{page}</PageLayout>;
+};
 
 function CommentsSections({
   mostPopularComments,
@@ -323,9 +346,8 @@ export async function getStaticProps(context) {
     values: [login],
   });
 
-  await client.end();
-
   if (res.rowCount === 0) {
+    await client.end();
     return {
       notFound: true,
     };
@@ -338,10 +360,7 @@ export async function getStaticProps(context) {
 
   // require("fs").writeFileSync(
   //   "data.json",
-  //   JSON.stringify({ comments, hadError }, null, 2)
-  // );
-  // const { comments, hadError } = JSON.parse(
-  //   require("fs").readFileSync("data.json")
+  //   JSON.stringify({ results: comments, hadError }, null, 2)
   // );
   const reactions = {
     THUMBS_UP: 0,
@@ -424,8 +443,23 @@ export async function getStaticProps(context) {
   //   )
   // );
 
+  await client.query({
+    name: "set user data",
+    text:
+      "UPDATE accounts SET data = $1 WHERE user_id = (SELECT id FROM users WHERE name = $2)",
+    values: [
+      {
+        reactions,
+        totalReactions,
+      },
+      login,
+    ],
+  });
+
+  await client.end();
+
   return {
-    revalidate: 60 * 60,
+    revalidate: parseInt(process.env.CACHE_IN_SECONDS, 10),
     props: {
       reactions,
       totalReactions,

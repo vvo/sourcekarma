@@ -14,14 +14,16 @@
     "@tailwindcss/aspect-ratio": "0.2.0",
     "@tailwindcss/forms": "0.2.1",
     "@tailwindcss/typography": "0.4.0",
-    "autoprefixer": "10.2.4",
+    "autoprefixer": "10.2.5",
+    "chrome-aws-lambda": "7.0.0",
     "classnames": "2.2.6",
-    "fathom-client": "^3.0.0",
+    "fathom-client": "3.0.0",
     "lodash": "4.17.21",
-    "next": "10.0.7",
-    "next-auth": "3.7.0",
+    "next": "10.0.8",
+    "next-auth": "3.7.1",
     "pg": "8.5.1",
     "postcss": "8.2.7",
+    "puppeteer-core": "8.0.0",
     "react": "17.0.1",
     "react-countup": "4.3.3",
     "react-dom": "17.0.1",
@@ -30,5 +32,8 @@
   },
   "engines": {
     "node": "14.x"
+  },
+  "devDependencies": {
+    "puppeteer": "8.0.0"
   }
 }

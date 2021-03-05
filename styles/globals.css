@@ -7,6 +7,10 @@
   .loading {
     @apply animate-pulse bg-teal-200 text-teal-200 rounded pointer-events-none;
   }
+  .number {
+    font-feature-settings: "tnum";
+    font-variant-numeric: "tabular-nums";
+  }
   @variants group-hover, hover, responsive {
     .filter-grayscale {
       filter: grayscale(100%);

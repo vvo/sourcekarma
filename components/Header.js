@@ -60,6 +60,7 @@ function LoggedInButtons() {
             <img
               src={`https://github.com/${session.user.name}.png`}
               className="-ml-1 mr-3 h-7 w-7 rounded-full"
+              alt={`GitHub avatar for ${session.user.name}`}
             />
             Your page
           </button>

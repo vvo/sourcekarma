@@ -1,6 +1,6 @@
 import Header from "../components/Header";
+import PageLayout from "../components/layouts/PageLayout";
 import NotFoundIllustration from "../svg/not-found.svg";
-
 export default function Custom404() {
   return (
     <div className={"pt-10"}>
@@ -29,3 +29,7 @@ export default function Custom404() {
     </div>
   );
 }
+
+Custom404.getLayout = function getLayout(page) {
+  return <PageLayout>{page}</PageLayout>;
+};

@@ -25,20 +25,4 @@ export default NextAuth({
     secret: process.env.NEXTAUTH_JWE_SECRET,
   },
   database: process.env.DATABASE_URL,
-  callbacks: {
-    async session(session, token) {
-      if (token?.accessToken) {
-        // Add property to session, like an access_token from a provider
-        session.accessToken = token.accessToken;
-      }
-      return session;
-    },
-    async jwt(token, user, account, profile, isNewUser) {
-      // Add access_token to the token right after signin
-      if (account?.accessToken) {
-        token.accessToken = account.accessToken;
-      }
-      return token;
-    },
-  },
 });

@@ -1,22 +1,33 @@
 import formatNumber from "../lib/formatNumber";
 import cx from "classnames";
+import Spinner from "./Spinner";
 
 export default function Profile({
   totalComments,
   commentsWithReactions,
   login,
   loading,
-  hadError = false,
 }) {
   return (
     <div className="flex flex-col items-center sm:justify-between sm:w-1/2">
-      <img
-        src={`https://github.com/${login}.png`}
-        className="h-40 w-40 rounded-full"
-      />
+      <div className="relative">
+        <img
+          src={`https://github.com/${login}.png`}
+          className={cx("h-44 w-44 rounded-full", loading && "opacity-25")}
+          alt={`GitHub avatar for ${login}`}
+        />
+        {loading && (
+          <div className="text-teal-600 absolute inset-0">
+            <Spinner />
+          </div>
+        )}
+      </div>
       <a
         href={`https://github.com/${login}`}
-        className="text-teal-600 hover:text-indigo-600 underline hover:no-underline mt-6 sm:mt-0"
+        className={cx(
+          "text-teal-600 hover:text-indigo-600 underline hover:no-underline mt-6 sm:mt-0",
+          loading && "loading"
+        )}
         target="_blank"
         rel="noopener"
       >
