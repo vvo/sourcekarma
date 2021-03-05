@@ -7,20 +7,13 @@ import Profile from "../components/Profile";
 import PageLayout from "../components/layouts/PageLayout";
 import Head from "next/head";
 
-// meta tags index page (+title)
-// social image index page (arrow like)
+// dark mode
+// check accessibility measure.dev
+// publish to PH, Show HN, made with next, made with tailwind, twitter rauchg
 
 // show twitter feed on homepage (manually selected tweets)
 // ability to get markdown of a github badge: need to create a different badge (no picture) and another api route, doable
-// dark mode
 // ability to delete account
-
-// publish to PH, Show HN, made with next, made with tailwind, twitter rauchg
-
-// Update readme + logo / hero on github repository
-// check accessibility measure.dev
-// vercel memory size
-// install only prod deps
 
 const title = `Discover how people react to you on GitHub - Source Karma`;
 const url = `${process.env.NEXT_PUBLIC_BASE_URL}`;
