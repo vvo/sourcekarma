@@ -12,7 +12,7 @@ export default async function (req, res) {
 
     const [page] = await browser.pages();
     await page.goto(
-      `https://sourcekarma-dev.eu.ngrok.io/${req.query.login}/badge`
+      `${process.env.NEXT_PUBLIC_BASE_URL}/${req.query.login}/badge`
     );
     await page.waitForSelector('#badge[data-qa="loaded"]', {
       timeout: 10000,

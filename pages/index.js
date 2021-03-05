@@ -5,6 +5,7 @@ import Link from "next/link";
 import Reactions from "../components/Reactions";
 import Profile from "../components/Profile";
 import PageLayout from "../components/layouts/PageLayout";
+import Head from "next/head";
 
 // meta tags index page (+title)
 // social image index page (arrow like)
@@ -21,11 +22,30 @@ import PageLayout from "../components/layouts/PageLayout";
 // vercel memory size
 // install only prod deps
 
+const title = `Discover how people react to you on GitHub - Source Karma`;
+const url = `${process.env.NEXT_PUBLIC_BASE_URL}`;
+const description =
+  "Discover how people react to you on GitHub. Create and share your open-source karma score card.";
+const socialImage = `${process.env.NEXT_PUBLIC_BASE_URL}/social.png`;
+
 export default function Home() {
   const [session] = useSession();
 
   return (
     <div className="max-w-screen-2xl mx-auto py-10 px-2.5 lg:px-10">
+      <Head>
+        <meta name="robots" content="noindex" />
+        <title>{title}</title>
+        <link href={url} rel="canonical" />
+        <meta content={title} name="title" />
+        <meta content={description} name="description" />
+        <meta content="website" property="og:type" />
+        <meta content={title} property="og:title" />
+        <meta content={description} property="og:description" />
+        <meta content={socialImage} property="og:image" />
+        <meta content={url} property="og:url" />
+        <meta content="summary_large_image" property="twitter:card" />
+      </Head>
       <div className="flex sm:flex-row sm:items-center flex-col-reverse">
         <div className="sm:w-1/2">
           <Link href="/">
