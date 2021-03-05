@@ -34,6 +34,6 @@ export default async function (req, res) {
       browser.close();
     } catch (_) {}
 
-    res.status(404).end();
+    res.status(500).end();
   }
 }

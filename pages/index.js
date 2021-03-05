@@ -180,7 +180,7 @@ export default function Home() {
                 <dt className="text-lg leading-6 font-medium text-gray-900">
                   When is the data updated?
                 </dt>
-                <dd className="mt-2 text-base text-gray-500">~Every day</dd>
+                <dd className="mt-2 text-base text-gray-500">~Every day.</dd>
               </div>
 
               <div className="hidden md:block">
