@@ -22,7 +22,7 @@
     "next-auth": "3.7.1",
     "pg": "8.5.1",
     "postcss": "8.2.7",
-    "puppeteer-core": "7.0.0",
+    "puppeteer-core": "8.0.0",
     "react": "17.0.1",
     "react-countup": "4.3.3",
     "react-dom": "17.0.1",
@@ -30,5 +30,8 @@
   },
   "engines": {
     "node": "14.x"
+  },
+  "devDependencies": {
+    "puppeteer": "8.0.0"
   }
 }
