@@ -1,7 +1,8 @@
 {
   "functions": {
     "api/[login].js": {
-      "memory": 3000
+      "memory": 2048
     }
-  }
+  },
+  "cleanUrls": true
 }
