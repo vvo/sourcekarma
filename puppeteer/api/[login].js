@@ -14,9 +14,8 @@ export default async function (req, res) {
       headless: true,
     });
 
-    await chromium.font(
-      "https://raw.githack.com/googlei18n/noto-emoji/master/fonts/NotoColorEmoji.ttf"
-    );
+    await chromium.font(join(__dirname, "fonts", "inter.ttf"));
+    await chromium.font(join(__dirname, "fonts", "noto.ttf"));
     const [page] = await browser.pages();
     await page.goto(
       `${process.env.NEXT_PUBLIC_BASE_URL}/${req.query.login}/badge`,
