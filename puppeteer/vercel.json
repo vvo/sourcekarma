@@ -1,8 +1,7 @@
 {
   "functions": {
     "api/[login].js": {
-      "memory": 2048,
-      "includeFiles": "api/fonts/**"
+      "memory": 2048
     }
   },
   "cleanUrls": true
