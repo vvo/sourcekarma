@@ -10,7 +10,7 @@ export default async function (req, res) {
       headless: true,
     });
 
-    const [page] = await browser.pages();
+    const page = await browser.newPage();
     await page.goto(
       `${process.env.NEXT_PUBLIC_BASE_URL}/${req.query.login}/badge`
     );
