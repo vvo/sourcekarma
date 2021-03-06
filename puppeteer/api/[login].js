@@ -33,7 +33,7 @@ export default async function (req, res) {
     res.setHeader("content-type", "image/png");
     res.setHeader(
       "cache-control",
-      `public, max-age=${process.env.CACHE_IN_SECONDS}, immutable`
+      `public, max-age=${process.env.CACHE_IN_SECONDS}, s-maxage=600, stale-while-revalidate`
     );
     res.end(screenshot);
   } catch (error) {
@@ -45,7 +45,7 @@ export default async function (req, res) {
 
     res.statusCode = 200;
     res.setHeader("content-type", "image/png");
-    res.setHeader("cache-control", `public, max-age=600, immutable`);
+    res.setHeader("cache-control", "public, max-age=600");
     res.end(backupImage);
   }
 }
