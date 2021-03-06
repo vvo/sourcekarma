@@ -27,7 +27,6 @@ export default function Home() {
   return (
     <div className="max-w-screen-2xl mx-auto py-10 px-2.5 lg:px-10">
       <Head>
-        <meta name="robots" content="noindex" />
         <title>{title}</title>
         <link href={url} rel="canonical" />
         <meta content={title} name="title" />
