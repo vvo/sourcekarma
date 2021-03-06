@@ -34,7 +34,10 @@ export default async function (req, res) {
       await browser.close();
     } catch (_) {}
 
-    console.error(error);
+    console.error(
+      error,
+      `${process.env.NEXT_PUBLIC_BASE_URL}/${req.query.login}/badge`
+    );
 
     res.status(500).end();
   }

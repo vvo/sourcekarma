@@ -175,7 +175,7 @@ export default function Home() {
                   >
                     craftwork.design
                   </a>
-                  , PostgreSQL, AWS, Vercel, Pupeeter (for the opengraph
+                  , PostgreSQL, AWS, Vercel, Puppeteer (for the opengraph
                   images!),{" "}
                   <a
                     href="https://usefathom.com/ref/Y8XVBV"
