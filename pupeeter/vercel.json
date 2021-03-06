@@ -1,6 +1,6 @@
 {
   "functions": {
-    "api/[login].png.js": {
+    "api/[login].js": {
       "memory": 2048
     }
   }
