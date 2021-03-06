@@ -10,12 +10,15 @@ export default async function (req, res) {
       headless: true,
     });
 
-    const page = await browser.newPage();
+    await chromium.font(
+      "https://raw.githack.com/googlei18n/noto-emoji/master/fonts/NotoColorEmoji.ttf"
+    );
+    const [page] = await browser.pages();
     await page.goto(
       `${process.env.NEXT_PUBLIC_BASE_URL}/${req.query.login}/badge`
     );
     await page.waitForSelector('#badge[data-qa="loaded"]', {
-      timeout: 20000,
+      timeout: 5000,
     });
     const element = await page.$("#badge");
     const screenshot = await element.screenshot({
