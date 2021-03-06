@@ -19,7 +19,7 @@ export default function Spinner() {
         cy="100"
         r="94.375"
         stroke="currentColor"
-        stroke-width="11.25"
+        strokeWidth="11.25"
       />
       <path
         className="opacity-75"
