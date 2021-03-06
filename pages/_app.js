@@ -23,6 +23,13 @@ function MyApp({ Component, pageProps }) {
           href="/favicon-16x16.png"
         />
         <link rel="manifest" href="/site.webmanifest" />
+        <link
+          as="font"
+          crossOrigin="anonymous"
+          href="/Inter.var.woff2"
+          rel="preload"
+          type="font/woff2"
+        />
       </Head>
 
       {Component.getLayout(<Component {...pageProps} />)}
