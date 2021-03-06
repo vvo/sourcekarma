@@ -1,4 +1,8 @@
 const chromium = require("chrome-aws-lambda");
+const { readFileSync } = require("fs");
+const { join } = require("path");
+
+const backupImage = readFileSync(join(__dirname, "social.png"));
 
 export default async function (req, res) {
   let browser;
@@ -37,11 +41,11 @@ export default async function (req, res) {
       await browser.close();
     } catch (_) {}
 
-    console.error(
-      error,
-      `${process.env.NEXT_PUBLIC_BASE_URL}/${req.query.login}/badge`
-    );
+    console.error(error);
 
-    res.status(500).end();
+    res.statusCode = 200;
+    res.setHeader("content-type", "image/png");
+    res.setHeader("cache-control", `public, max-age=600, immutable`);
+    res.end(backupImage);
   }
 }
