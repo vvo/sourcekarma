@@ -19,10 +19,10 @@ export default async function (req, res) {
     const [page] = await browser.pages();
     await page.goto(
       `${process.env.NEXT_PUBLIC_BASE_URL}/${req.query.login}/badge`,
-      { timeout: 5000 }
+      { timeout: 15000 }
     );
     await page.waitForSelector('#badge[data-qa="loaded"]', {
-      timeout: 5000,
+      timeout: 15000,
     });
     const element = await page.$("#badge");
     const screenshot = await element.screenshot({
