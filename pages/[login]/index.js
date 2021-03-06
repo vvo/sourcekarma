@@ -58,7 +58,7 @@ export default function UserPage({
   const url = `${process.env.NEXT_PUBLIC_BASE_URL}/${login}`;
   const description =
     "Discover how people react to you on GitHub. Create and share your open-source karma score card.";
-  const socialImage = `${process.env.NEXT_PUBLIC_BASE_URL}/api/${login}/og.png`;
+  const socialImage = `${process.env.NEXT_PUBLIC_OG_BASE_URL}/${login}`;
 
   return (
     <div className={cx("sm:pt-8", loading && "overflow-y-scroll")}>
