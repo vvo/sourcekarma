@@ -14,7 +14,6 @@ export default async function (req, res) {
       headless: true,
     });
 
-    await chromium.font(`${process.env.BASE_URL}/inter.ttf`);
     await chromium.font(`${process.env.BASE_URL}/noto.ttf`);
     const [page] = await browser.pages();
     await page.goto(
