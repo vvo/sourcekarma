@@ -1,6 +1,6 @@
 {
   "functions": {
-    "api/[login].js": {
+    "api/og/[login].js": {
       "memory": 2048
     }
   },
