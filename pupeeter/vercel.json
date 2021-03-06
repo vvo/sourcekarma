@@ -1,7 +1,7 @@
 {
   "functions": {
     "api/[login].js": {
-      "memory": 2048
+      "memory": 3000
     }
   }
 }
