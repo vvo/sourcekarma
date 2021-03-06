@@ -96,7 +96,10 @@ export default function UserBadgePage() {
                     className="flex items-center justify-start"
                     key={reactionName}
                   >
-                    <div className="w-20 h-20 flex items-center justify-center bg-teal-50 border border-teal-400 rounded-full text-4xl">
+                    <div
+                      className="w-20 h-20 flex items-center justify-center bg-teal-50 border border-teal-400 rounded-full text-4xl"
+                      style={{ fontFamily: "Noto" }}
+                    >
                       {reactionsMetadata[reactionName].emoji}
                     </div>
                     <div className="space-y-2 ml-4 text-2xl font-medium leading-tight text-gray-700 number">
