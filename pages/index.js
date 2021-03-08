@@ -7,10 +7,10 @@ import Profile from "../components/Profile";
 import PageLayout from "../components/layouts/PageLayout";
 import Head from "next/head";
 
+// dark mode
 // ability to get markdown of a github badge: need to create a different badge (no picture) and another api route, doable
 // check accessibility measure.dev
 
-// dark mode
 // publish to PH, Show HN, made with next, made with tailwind, twitter rauchg
 // show twitter feed on homepage (manually selected tweets)
 // ability to delete account

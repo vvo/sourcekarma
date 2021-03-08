@@ -60,8 +60,8 @@ export default function UserPage({
     "Discover how people react to you on GitHub. Create and share your open-source karma score card.";
 
   // we will ask the browser to preload those images so we know they are always ready
-  const socialImage = `${process.env.NEXT_PUBLIC_OG_BASE_URL}/${login}/og`;
-  const githubImage = `${process.env.NEXT_PUBLIC_OG_BASE_URL}/${login}/github`;
+  const socialImage = `${process.env.NEXT_PUBLIC_OG_BASE_URL}/api/${login}/og`;
+  const githubImage = `${process.env.NEXT_PUBLIC_OG_BASE_URL}/api/${login}/github`;
 
   return (
     <div className={cx("sm:pt-8", loading && "overflow-y-scroll")}>
