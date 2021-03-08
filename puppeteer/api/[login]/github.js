@@ -9,7 +9,10 @@ export default async function githubScreenshot(req, res) {
   try {
     browser = await chromium.puppeteer.launch({
       args: chromium.args,
-      defaultViewport: chromium.defaultViewport,
+      defaultViewport: {
+        width: 600,
+        height: 270,
+      },
       executablePath: await chromium.executablePath,
       headless: true,
     });
