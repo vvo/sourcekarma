@@ -20,7 +20,6 @@ import PageLayout from "../../components/layouts/PageLayout";
 import LoginButton from "../../components/LoginButton";
 import { useState } from "react";
 import { CopyToClipboard } from "react-copy-to-clipboard";
-import Image from "next/image";
 
 const reactionsReleaseDate = "2016-03-10T00:00:00Z";
 
@@ -74,31 +73,17 @@ export default function UserPage({
     <div className={cx("sm:pt-8", loading && "overflow-y-scroll")}>
       <Head>
         <title>{title}</title>
-        {!loading && (
-          <>
-            <link href={url} rel="canonical" />
-            <meta content={title} name="title" />
-            <meta content={description} name="description" />
-            <meta content="website" property="og:type" />
-            <meta content={title} property="og:title" />
-            <meta content={description} property="og:description" />
-            <meta content={socialImage} property="og:image" />
-            <meta content={url} property="og:url" />
-            <meta content="summary_large_image" property="twitter:card" />
-            <link
-              rel="prefetch"
-              href={socialImage}
-              as="image"
-              type="image/png"
-            />
-            <link
-              rel="prefetch"
-              href={gitHubImage}
-              as="image"
-              type="image/png"
-            />
-          </>
-        )}
+        <link href={url} rel="canonical" />
+        <meta content={title} name="title" />
+        <meta content={description} name="description" />
+        <meta content="website" property="og:type" />
+        <meta content={title} property="og:title" />
+        <meta content={description} property="og:description" />
+        <meta content={socialImage} property="og:image" />
+        <meta content={url} property="og:url" />
+        <meta content="summary_large_image" property="twitter:card" />
+        <link rel="prefetch" href={socialImage} as="image" type="image/png" />
+        <link rel="prefetch" href={gitHubImage} as="image" type="image/png" />
       </Head>
 
       <div className="max-w-screen-lg mx-auto px-2.5 relative">
