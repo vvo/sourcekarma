@@ -215,7 +215,7 @@ UserPage.getLayout = function getLayout(page) {
 function GitHubBadge({ login, gitHubImage, url }) {
   const [isOpen, setIsOpen] = useState(false);
   const [isCopied, setIsCopied] = useState(false);
-  const markdown = `[![Source Karma badge for @#{login}](${gitHubImage})](${url})`;
+  const markdown = `[![Source Karma badge for @${login}](${gitHubImage})](${url})`;
 
   return (
     <div className="mt-20 mx-auto text-gray-700">
