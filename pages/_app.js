@@ -32,7 +32,11 @@ function MyApp({ Component, pageProps }) {
         />
       </Head>
 
-      {Component.getLayout(<Component {...pageProps} />)}
+      {Component.getLayout ? (
+        Component.getLayout(<Component {...pageProps} />)
+      ) : (
+        <Component {...pageProps} />
+      )}
     </>
   );
 }

@@ -562,6 +562,7 @@ export async function getStaticProps(context) {
     };
   } catch (error) {
     console.error(error);
+    error.ctx = context;
     await client.end();
     throw error;
   }

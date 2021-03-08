@@ -24,7 +24,7 @@ export default async function ogScreenshot(req, res) {
       { timeout: 15000 }
     );
     await page.waitForSelector('#badge[data-qa="loaded"]', {
-      timeout: 15000,
+      timeout: 40000,
     });
     const element = await page.$("#badge");
     const screenshot = await element.screenshot({
