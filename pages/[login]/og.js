@@ -94,7 +94,7 @@ export default function ogBadgePage() {
                         key={reactionName}
                       >
                         <div
-                          className="w-20 h-20 p-4 flex items-center justify-center bg-teal-50 border border-teal-400 rounded-full text-4xl"
+                          className="w-20 h-20 p-4 flex items-center justify-center border border-teal-400 rounded-full text-4xl"
                           dangerouslySetInnerHTML={{
                             __html: twemoji.parse(
                               reactionsMetadata[reactionName].emoji,

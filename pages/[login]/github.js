@@ -82,7 +82,7 @@ export default function GitHubBadgePage() {
                       key={reactionName}
                     >
                       <div
-                        className="w-14 h-14 p-3 flex items-center justify-center bg-teal-50 border border-teal-400 rounded-full"
+                        className="w-14 h-14 p-3 flex items-center justify-center border border-teal-400 rounded-full"
                         dangerouslySetInnerHTML={{
                           __html: twemoji.parse(
                             reactionsMetadata[reactionName].emoji,
