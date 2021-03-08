@@ -8,10 +8,6 @@ import Head from "next/head";
 import LoginButton from "../components/LoginButton";
 import Image from "next/image";
 
-// ability to get markdown of a github badge: need to create a different badge (no picture) and another api route, doable
-// check accessibility measure.dev of all pages
-// mobile last check
-
 // RT launch tweet thread
 // interesting details on how it's made
 // add comment https://twitter.com/vvoyer/status/1314229290196754439

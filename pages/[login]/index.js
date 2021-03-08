@@ -428,138 +428,144 @@ export async function getStaticProps(context) {
 
   const client = new Client(process.env.DATABASE_URL);
   await client.connect();
-  const res = await client.query({
-    name: "get access_token",
-    text:
-      "SELECT access_token FROM accounts WHERE user_id = (SELECT id FROM users WHERE name = $1)",
-    values: [login],
-  });
-
-  if (res.rowCount === 0) {
-    await client.end();
-    return {
-      notFound: true,
-    };
-  }
-
-  const { results: comments, hadError } =
-    process.env.APP_ENV === "development"
-      ? JSON.parse(require("fs").readFileSync("data.json"))
-      : await fetchGitHubData(login, res.rows[0].access_token);
-
-  // require("fs").writeFileSync(
-  //   "data.json",
-  //   JSON.stringify({ results: comments, hadError }, null, 2)
-  // );
-  const reactions = {
-    THUMBS_UP: 0,
-    THUMBS_DOWN: 0,
-    LAUGH: 0,
-    HOORAY: 0,
-    CONFUSED: 0,
-    HEART: 0,
-    ROCKET: 0,
-    EYES: 0,
-  };
-
-  const totalComments = comments.length;
-  let commentsWithReactions = 0;
-  let totalReactions = 0;
-
-  for (const comment of comments) {
-    reactions.THUMBS_UP += comment.reactionGroups[0].users.totalCount;
-    reactions.THUMBS_DOWN += comment.reactionGroups[1].users.totalCount;
-    reactions.LAUGH += comment.reactionGroups[2].users.totalCount;
-    reactions.HOORAY += comment.reactionGroups[3].users.totalCount;
-    reactions.CONFUSED += comment.reactionGroups[4].users.totalCount;
-    reactions.HEART += comment.reactionGroups[5].users.totalCount;
-    reactions.ROCKET += comment.reactionGroups[6].users.totalCount;
-    reactions.EYES += comment.reactionGroups[7].users.totalCount;
-
-    totalReactions += comment.reactionGroups.reduce((acc, reactionGroup) => {
-      return acc + reactionGroup.users.totalCount;
-    }, 0);
-
-    // precompute some values for sorting
-    comment.positiveReactions = positiveReactions.reduce((acc, reaction) => {
-      return (
-        acc + comment.reactionGroups[reaction.gitHubIndex].users.totalCount
-      );
-    }, 0);
-    comment.negativeReactions = negativeReactions.reduce((acc, reaction) => {
-      return (
-        acc + comment.reactionGroups[reaction.gitHubIndex].users.totalCount
-      );
-    }, 0);
-    comment.funnyReactions = funnyReactions.reduce((acc, reaction) => {
-      return (
-        acc + comment.reactionGroups[reaction.gitHubIndex].users.totalCount
-      );
-    }, 0);
-
-    const hasReactions = comment.reactionGroups.some((reactionGroup) => {
-      return reactionGroup.users.totalCount > 0;
+  try {
+    const res = await client.query({
+      name: "get access_token",
+      text:
+        "SELECT access_token FROM accounts WHERE user_id = (SELECT id FROM users WHERE name = $1)",
+      values: [login],
     });
 
-    if (hasReactions) {
-      commentsWithReactions++;
+    if (res.rowCount === 0) {
+      await client.end();
+      return {
+        notFound: true,
+      };
     }
-  }
 
-  const mostPopularComments = orderBy(comments, "positiveReactions", "desc")
-    .filter((comment) => comment.positiveReactions > 0)
-    .slice(0, 5);
+    const { results: comments, hadError } =
+      process.env.APP_ENV === "development"
+        ? JSON.parse(require("fs").readFileSync("data.json"))
+        : await fetchGitHubData(login, res.rows[0].access_token);
 
-  const leastPopularComments = orderBy(comments, "negativeReactions", "desc")
-    .filter((comment) => comment.negativeReactions > 0)
-    .slice(0, 5);
+    // require("fs").writeFileSync(
+    //   "data.json",
+    //   JSON.stringify({ results: comments, hadError }, null, 2)
+    // );
+    const reactions = {
+      THUMBS_UP: 0,
+      THUMBS_DOWN: 0,
+      LAUGH: 0,
+      HOORAY: 0,
+      CONFUSED: 0,
+      HEART: 0,
+      ROCKET: 0,
+      EYES: 0,
+    };
 
-  const funniestComments = orderBy(comments, "funnyReactions", "desc")
-    .filter((comment) => comment.funnyReactions > 0)
-    .slice(0, 5);
+    const totalComments = comments.length;
+    let commentsWithReactions = 0;
+    let totalReactions = 0;
 
-  // require("fs").writeFileSync(
-  //   "demo.json",
-  //   JSON.stringify(
-  //     {
-  //       reactions,
-  //       totalReactions,
-  //       totalComments,
-  //       commentsWithReactions,
-  //     },
-  //     null,
-  //     2
-  //   )
-  // );
+    for (const comment of comments) {
+      reactions.THUMBS_UP += comment.reactionGroups[0].users.totalCount;
+      reactions.THUMBS_DOWN += comment.reactionGroups[1].users.totalCount;
+      reactions.LAUGH += comment.reactionGroups[2].users.totalCount;
+      reactions.HOORAY += comment.reactionGroups[3].users.totalCount;
+      reactions.CONFUSED += comment.reactionGroups[4].users.totalCount;
+      reactions.HEART += comment.reactionGroups[5].users.totalCount;
+      reactions.ROCKET += comment.reactionGroups[6].users.totalCount;
+      reactions.EYES += comment.reactionGroups[7].users.totalCount;
 
-  await client.query({
-    name: "set user data",
-    text:
-      "UPDATE accounts SET data = $1 WHERE user_id = (SELECT id FROM users WHERE name = $2)",
-    values: [
-      {
+      totalReactions += comment.reactionGroups.reduce((acc, reactionGroup) => {
+        return acc + reactionGroup.users.totalCount;
+      }, 0);
+
+      // precompute some values for sorting
+      comment.positiveReactions = positiveReactions.reduce((acc, reaction) => {
+        return (
+          acc + comment.reactionGroups[reaction.gitHubIndex].users.totalCount
+        );
+      }, 0);
+      comment.negativeReactions = negativeReactions.reduce((acc, reaction) => {
+        return (
+          acc + comment.reactionGroups[reaction.gitHubIndex].users.totalCount
+        );
+      }, 0);
+      comment.funnyReactions = funnyReactions.reduce((acc, reaction) => {
+        return (
+          acc + comment.reactionGroups[reaction.gitHubIndex].users.totalCount
+        );
+      }, 0);
+
+      const hasReactions = comment.reactionGroups.some((reactionGroup) => {
+        return reactionGroup.users.totalCount > 0;
+      });
+
+      if (hasReactions) {
+        commentsWithReactions++;
+      }
+    }
+
+    const mostPopularComments = orderBy(comments, "positiveReactions", "desc")
+      .filter((comment) => comment.positiveReactions > 0)
+      .slice(0, 5);
+
+    const leastPopularComments = orderBy(comments, "negativeReactions", "desc")
+      .filter((comment) => comment.negativeReactions > 0)
+      .slice(0, 5);
+
+    const funniestComments = orderBy(comments, "funnyReactions", "desc")
+      .filter((comment) => comment.funnyReactions > 0)
+      .slice(0, 5);
+
+    // require("fs").writeFileSync(
+    //   "demo.json",
+    //   JSON.stringify(
+    //     {
+    //       reactions,
+    //       totalReactions,
+    //       totalComments,
+    //       commentsWithReactions,
+    //     },
+    //     null,
+    //     2
+    //   )
+    // );
+
+    await client.query({
+      name: "set user data",
+      text:
+        "UPDATE accounts SET data = $1 WHERE user_id = (SELECT id FROM users WHERE name = $2)",
+      values: [
+        {
+          reactions,
+          totalReactions,
+        },
+        login,
+      ],
+    });
+
+    await client.end();
+
+    return {
+      revalidate: parseInt(process.env.CACHE_IN_SECONDS, 10),
+      props: {
         reactions,
         totalReactions,
+        totalComments,
+        commentsWithReactions,
+        mostPopularComments,
+        leastPopularComments,
+        funniestComments,
+        hadError,
       },
-      login,
-    ],
-  });
-
-  await client.end();
-
-  return {
-    revalidate: parseInt(process.env.CACHE_IN_SECONDS, 10),
-    props: {
-      reactions,
-      totalReactions,
-      totalComments,
-      commentsWithReactions,
-      mostPopularComments,
-      leastPopularComments,
-      funniestComments,
-      hadError,
-    },
-  };
+    };
+  } catch (error) {
+    console.error(error);
+    await client.end();
+    throw error;
+  }
 }
 
 export async function getStaticPaths() {
