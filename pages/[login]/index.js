@@ -14,6 +14,7 @@ import { reactionsMetadata } from "../../lib/reactions.js";
 import formatNumber from "../../lib/formatNumber.js";
 import Head from "next/head";
 import PageLayout from "../../components/layouts/PageLayout";
+import LoginButton from "../../components/LoginButton";
 
 const reactionsReleaseDate = "2016-03-10T00:00:00Z";
 
@@ -80,13 +81,13 @@ export default function UserPage({
             <meta content={url} property="og:url" />
             <meta content="summary_large_image" property="twitter:card" />
             <link
-              rel="preload"
+              rel="prefetch"
               href={socialImage}
               as="image"
               type="image/png"
             />
             <link
-              rel="preload"
+              rel="prefetch"
               href={githubImage}
               as="image"
               type="image/png"
@@ -588,21 +589,4 @@ query listReactions($login: String!, $cursor: String) {
   }
 
   return { results, hadError: false };
-}
-
-function LoginButton() {
-  return (
-    <button
-      type="button"
-      className="inline-flex items-center px-5 py-2.5 border border-transparent shadow-sm text-base font-medium rounded-md text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
-      onClick={() =>
-        signIn("github", {
-          callbackUrl: `${process.env.NEXT_PUBLIC_BASE_URL}/api/redirect`,
-        })
-      }
-    >
-      <GitHubIcon className="-ml-1 mr-3 h-7 w-7" aria-hidden="true" />
-      Get your karma
-    </button>
-  );
 }

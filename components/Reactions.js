@@ -11,7 +11,7 @@ export default function Reactions({ reactions, totalReactions, loading }) {
         {Object.entries(reactions).map(([reactionName, reactionCount]) => {
           return (
             <li className="flex items-center justify-start" key={reactionName}>
-              <div className="w-14 h-14 sm:w-16 sm:h-16 flex items-center justify-center bg-teal-50 border border-teal-400 rounded-full text-2xl sm:text-3xl">
+              <div className="w-14 h-14 sm:w-16 sm:h-16 flex items-center justify-center border border-teal-400 rounded-full text-2xl sm:text-3xl">
                 {reactionsMetadata[reactionName].emoji}
               </div>
               <div className="space-y-1 sm:space-y-2 ml-2 sm:ml-4 text-lg sm:text-xl font-medium leading-tight text-gray-700 number">

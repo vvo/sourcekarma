@@ -1,11 +1,11 @@
-import { signIn, signOut, useSession } from "next-auth/client";
+import { signOut, useSession } from "next-auth/client";
 import HeroIllustration from "../svg/hero.svg";
-import GitHubIcon from "../svg/github.svg";
 import Link from "next/link";
 import Reactions from "../components/Reactions";
 import Profile from "../components/Profile";
 import PageLayout from "../components/layouts/PageLayout";
 import Head from "next/head";
+import LoginButton from "../components/LoginButton";
 
 // loaders on github buttons
 // dark mode
@@ -234,23 +234,6 @@ export default function Home() {
 Home.getLayout = function getLayout(page) {
   return <PageLayout>{page}</PageLayout>;
 };
-
-function LoginButton() {
-  return (
-    <button
-      type="button"
-      className="inline-flex items-center px-5 py-2.5 border border-transparent shadow-sm text-base font-medium rounded-md text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
-      onClick={() =>
-        signIn("github", {
-          callbackUrl: `${process.env.NEXT_PUBLIC_BASE_URL}/api/redirect`,
-        })
-      }
-    >
-      <GitHubIcon className="-ml-1 mr-3 h-7 w-7" aria-hidden="true" />
-      Get your karma
-    </button>
-  );
-}
 
 function LoginButtons() {
   return (
