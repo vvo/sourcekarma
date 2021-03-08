@@ -7,15 +7,18 @@ import PageLayout from "../components/layouts/PageLayout";
 import Head from "next/head";
 import LoginButton from "../components/LoginButton";
 import Image from "next/image";
+import { TwitterTweetEmbed } from "react-twitter-embed";
+import Spinner from "../components/Spinner";
+import { useState } from "react";
+import cx from "classnames";
 
-// RT launch tweet thread
-// interesting details on how it's made
-// add comment https://twitter.com/vvoyer/status/1314229290196754439
-
-// publish to PH, Show HN, made with next, made with tailwind, twitter rauchg
+// TODO:
+// nudge GitHub
 // show twitter feed on homepage (manually selected tweets)
+// publish to newsletters, which ones?
 // ability to delete account
 // dark mode
+// publish to PH, Show HN, made with next, made with tailwind, twitter rauchg
 
 const title = `Discover how people react to you on GitHub - Source Karma`;
 const url = `${process.env.NEXT_PUBLIC_BASE_URL}`;
@@ -70,33 +73,55 @@ export default function Home() {
         </div>
       </div>
       <h2 className="mt-12 sm:mt-24 text-center text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+        Lucky people who discovered their best comments
+      </h2>
+
+      <div
+        className="grid grid-cols-1 md:grid-cols-3 gap-x-4 auto-cols-min xl:grid-cols-5 mt-12 sm:mt-16"
+        style={{ minHeight: "230px" }}
+      >
+        <div>
+          <Tweet tweetId="1368957988900380673" />
+        </div>
+        <div>
+          <Tweet tweetId="1368955214695436294" />
+        </div>
+        <div className="hidden md:block">
+          <Tweet tweetId="1368996709120962561" />
+        </div>
+        <div className="hidden xl:block">
+          <Tweet tweetId="1369018090978091012" />
+        </div>
+        <div className="hidden xl:block">
+          <Tweet tweetId="1368992902731431939" />
+        </div>
+      </div>
+
+      <h2 className="mt-12 sm:mt-24 text-center text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
         Create your Source Karma page
       </h2>
-      <div className="relative mt-16 sm:mt-28">
-        <div className="hidden sm:block absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white"></div>
-        <div className="flex flex-col items-center sm:items-stretch sm:flex-row space-y-10 sm:space-y-0 sm:justify-center pointer-events-none max-w-6xl mx-auto">
-          <Profile
-            totalComments={5000}
-            commentsWithReactions={1228}
+      <div className="mt-16 sm:mt-28 flex flex-col items-center sm:items-stretch sm:flex-row space-y-10 sm:space-y-0 sm:justify-center pointer-events-none max-w-6xl mx-auto">
+        <Profile
+          totalComments={5000}
+          commentsWithReactions={1228}
+          loading={false}
+          login="bluebill1049"
+        />
+        <div className="sm:w-1/2 flex justify-center">
+          <Reactions
+            reactions={{
+              THUMBS_UP: 905,
+              THUMBS_DOWN: 20,
+              LAUGH: 84,
+              HOORAY: 186,
+              CONFUSED: 21,
+              HEART: 478,
+              ROCKET: 146,
+              EYES: 53,
+            }}
+            totalReactions={1893}
             loading={false}
-            login="bluebill1049"
           />
-          <div className="sm:w-1/2 flex justify-center">
-            <Reactions
-              reactions={{
-                THUMBS_UP: 905,
-                THUMBS_DOWN: 20,
-                LAUGH: 84,
-                HOORAY: 186,
-                CONFUSED: 21,
-                HEART: 478,
-                ROCKET: 146,
-                EYES: 53,
-              }}
-              totalReactions={1893}
-              loading={false}
-            />
-          </div>
         </div>
       </div>
       {!session && (
@@ -107,12 +132,14 @@ export default function Home() {
       <h2 className="mt-12 sm:mt-40 text-center text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
         Add a GitHub badge to your readme
       </h2>
-      <Image
-        src="/screenshot.png"
-        width={1443}
-        height={969}
-        alt="Screenshot of an example Source Karma GitHub badge"
-      />
+      <div className="mt-12">
+        <Image
+          src="/screenshot.png"
+          width={1443}
+          height={969}
+          alt="Screenshot of an example Source Karma GitHub badge"
+        />
+      </div>
       <div className="bg-white">
         <div className="max-w-7xl mx-auto pt-16 px-4 sm:pt-32 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-extrabold text-gray-900 text-center sm:text-4xl">
@@ -262,6 +289,36 @@ function LoginButtons() {
           </button>
         </a>
       </Link>
+    </>
+  );
+}
+
+function Tweet({ tweetId }) {
+  const [isLoading, setIsLoading] = useState(true);
+  return (
+    <>
+      {isLoading && (
+        <div
+          className="flex items-center justify-center"
+          style={{ minHeight: "230px" }}
+        >
+          <div className="h-20 w-20 text-teal-300">
+            <Spinner />
+          </div>
+        </div>
+      )}
+      <div className={cx(isLoading && "invisible")}>
+        <TwitterTweetEmbed
+          tweetId={tweetId}
+          onLoad={() => {
+            setIsLoading(false);
+          }}
+          options={{
+            cards: "hidden",
+            conversation: "none",
+          }}
+        />
+      </div>
     </>
   );
 }
