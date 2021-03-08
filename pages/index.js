@@ -53,9 +53,8 @@ export default function Home() {
             </a>
           </Link>
 
-          <p className="text-gray-700 text-lg text-center sm:text-left sm:text-xl mt-12 sm:mt-8 sm:w-4/5">
-            Discover how people react to you on GitHub. Create and share your
-            Source Karma score card.
+          <p className="text-gray-700 text-lg text-center sm:text-left sm:text-xl lg:text-2xl xl:text-3xl mt-12 sm:mt-8 sm:w-4/5 lg:w-11/12">
+            Discover how people react to you on GitHub.
           </p>
 
           <div className="mt-12 flex justify-center sm:justify-start">
@@ -72,33 +71,9 @@ export default function Home() {
           <HeroIllustration className="w-full" />
         </div>
       </div>
-      <h2 className="mt-12 sm:mt-24 text-center text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
-        Lucky people who discovered their best comments
-      </h2>
-
-      <div
-        className="grid grid-cols-1 md:grid-cols-3 gap-x-4 auto-cols-min xl:grid-cols-5 mt-12 sm:mt-16"
-        style={{ minHeight: "230px" }}
-      >
-        <div>
-          <Tweet tweetId="1368957988900380673" />
-        </div>
-        <div>
-          <Tweet tweetId="1368955214695436294" />
-        </div>
-        <div className="hidden md:block">
-          <Tweet tweetId="1368996709120962561" />
-        </div>
-        <div className="hidden xl:block">
-          <Tweet tweetId="1369018090978091012" />
-        </div>
-        <div className="hidden xl:block">
-          <Tweet tweetId="1368992902731431939" />
-        </div>
-      </div>
 
       <h2 className="mt-12 sm:mt-24 text-center text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
-        Create your Source Karma page
+        Create and share your Source Karma
       </h2>
       <div className="mt-16 sm:mt-28 flex flex-col items-center sm:items-stretch sm:flex-row space-y-10 sm:space-y-0 sm:justify-center pointer-events-none max-w-6xl mx-auto">
         <Profile
@@ -124,12 +99,36 @@ export default function Home() {
           />
         </div>
       </div>
+      <h2 className="mt-12 sm:mt-32 text-center text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+        They ❤️ Source Karma
+      </h2>
+
+      <div
+        className="grid grid-cols-1 md:grid-cols-3 gap-x-4 auto-cols-min xl:grid-cols-5 mt-12 sm:mt-16"
+        style={{ minHeight: "230px" }}
+      >
+        <div>
+          <Tweet tweetId="1368957988900380673" />
+        </div>
+        <div>
+          <Tweet tweetId="1368955214695436294" />
+        </div>
+        <div className="hidden md:block">
+          <Tweet tweetId="1368996709120962561" />
+        </div>
+        <div className="hidden xl:block">
+          <Tweet tweetId="1369018090978091012" />
+        </div>
+        <div className="hidden xl:block">
+          <Tweet tweetId="1368992902731431939" />
+        </div>
+      </div>
       {!session && (
         <div className="text-center mt-24">
           <LoginButton />
         </div>
       )}
-      <h2 className="mt-12 sm:mt-40 text-center text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+      <h2 className="mt-12 sm:mt-32 text-center text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
         Add a GitHub badge to your readme
       </h2>
       <div className="mt-12">
