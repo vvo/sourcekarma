@@ -11,7 +11,7 @@ export default async function ogScreenshot(req, res) {
       args: chromium.args,
       defaultViewport: {
         width: 1200,
-        height: 670,
+        height: 630,
       },
       executablePath: await chromium.executablePath,
       headless: true,

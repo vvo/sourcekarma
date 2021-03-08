@@ -47,9 +47,9 @@ export default function ogBadgePage() {
       <div
         style={{
           width: "1200px",
-          height: "670px",
+          height: "630px",
         }}
-        className="border-18 border-teal-600 bg-white p-8"
+        className="bg-white p-8"
         data-qa={found === true ? "loaded" : "loading"}
         id="badge"
       >
