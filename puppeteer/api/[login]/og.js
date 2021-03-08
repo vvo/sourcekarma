@@ -2,7 +2,7 @@ const chromium = require("chrome-aws-lambda");
 const { readFileSync } = require("fs");
 const { join } = require("path");
 
-const backupImage = readFileSync(join(__dirname, "og.png"));
+const backupImage = readFileSync(join(__dirname, "..", "og.png"));
 
 export default async function ogScreenshot(req, res) {
   let browser;

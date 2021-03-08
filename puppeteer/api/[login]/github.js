@@ -2,7 +2,7 @@ const chromium = require("chrome-aws-lambda");
 const { readFileSync } = require("fs");
 const { join } = require("path");
 
-const backupImage = readFileSync(join(__dirname, "github.png"));
+const backupImage = readFileSync(join(__dirname, "..", "github.png"));
 
 export default async function githubScreenshot(req, res) {
   let browser;
