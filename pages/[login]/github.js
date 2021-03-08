@@ -26,7 +26,7 @@ export default function GitHubBadgePage() {
   });
 
   useEffect(async () => {
-    if (login === undefined) {
+    if (!login || login === "[login]") {
       return;
     }
 

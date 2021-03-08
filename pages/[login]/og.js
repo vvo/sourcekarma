@@ -26,7 +26,7 @@ export default function ogBadgePage() {
   });
 
   useEffect(async () => {
-    if (!login) {
+    if (!login || login === "[login]") {
       return;
     }
 
