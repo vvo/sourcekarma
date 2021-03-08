@@ -46,8 +46,8 @@ export default function GitHubBadgePage() {
     <div className="absolute inset-0 flex items-center justify-center">
       <div
         style={{
-          width: "650px",
-          height: "280px",
+          width: "495px",
+          height: "230px",
           borderColor: "#e1e4e8",
         }}
         className="border rounded-md py-6 bg-white absolute"
@@ -58,15 +58,15 @@ export default function GitHubBadgePage() {
           <meta name="robots" content="noindex" />
         </Head>
         <div className="flex items-center justify-center">
-          <Logo className="w-10 h-10" />
-          <div className="text-3xl font-extrabold tracking-tight text-gray-900 pt-2 ml-2">
+          <Logo className="w-8 h-8" />
+          <div className="text-2xl font-extrabold tracking-tight text-gray-900 pt-1 ml-2">
             Source <span className="text-teal-700">Karma</span>
           </div>
         </div>
 
-        <div className="flex flex-row mt-10 justify-center">
+        <div className="flex flex-row mt-8 justify-center">
           <div className="flex justify-center">
-            <ul className="grid grid-cols-4 gap-y-6 gap-x-10">
+            <ul className="grid grid-cols-4 gap-y-6 gap-x-6">
               {Object.entries(reactions)
                 .sort(([, reactionCountA], [, reactionCountB]) => {
                   if (reactionCountB > reactionCountA) {
@@ -82,7 +82,7 @@ export default function GitHubBadgePage() {
                       key={reactionName}
                     >
                       <div
-                        className="w-14 h-14 p-3 flex items-center justify-center border border-teal-400 rounded-full"
+                        className="w-10 h-10 p-2 flex items-center justify-center border border-teal-400 rounded-full"
                         dangerouslySetInnerHTML={{
                           __html: twemoji.parse(
                             reactionsMetadata[reactionName].emoji,
@@ -93,7 +93,7 @@ export default function GitHubBadgePage() {
                           ),
                         }}
                       ></div>
-                      <div className="space-y-2 ml-4 text-xl font-semibold leading-tight text-gray-700 number">
+                      <div className="space-y-1 ml-4 text-lg font-semibold leading-none text-gray-700 number">
                         <div>{formatNumber(reactionCount)}</div>
                         <div>
                           {formatNumber((reactionCount / totalReactions) * 100)}

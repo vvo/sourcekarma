@@ -17,6 +17,8 @@ export default async function (req, res) {
     return;
   }
 
+  await client.end();
+
   res.json({
     ...rows[0].data,
     found: true,
