@@ -108,7 +108,12 @@ export default function Home() {
       <h2 className="mt-12 sm:mt-40 text-center text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
         Add a GitHub badge to your readme
       </h2>
-      <Image src="/screenshot.png" width={1443} height={969} />
+      <Image
+        src="/screenshot.png"
+        width={1443}
+        height={969}
+        alt="Screenshot of an example Source Karma GitHub badge"
+      />
       <div className="bg-white">
         <div className="max-w-7xl mx-auto pt-16 px-4 sm:pt-32 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-extrabold text-gray-900 text-center sm:text-4xl">
