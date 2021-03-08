@@ -6,8 +6,8 @@ import Profile from "../components/Profile";
 import PageLayout from "../components/layouts/PageLayout";
 import Head from "next/head";
 import LoginButton from "../components/LoginButton";
+import Image from "next/image";
 
-// dark mode
 // ability to get markdown of a github badge: need to create a different badge (no picture) and another api route, doable
 // check accessibility measure.dev
 // mobile last check
@@ -18,11 +18,12 @@ import LoginButton from "../components/LoginButton";
 // publish to PH, Show HN, made with next, made with tailwind, twitter rauchg
 // show twitter feed on homepage (manually selected tweets)
 // ability to delete account
+// dark mode
 
 const title = `Discover how people react to you on GitHub - Source Karma`;
 const url = `${process.env.NEXT_PUBLIC_BASE_URL}`;
 const description =
-  "Discover how people react to you on GitHub. Create and share your open-source karma score card.";
+  "Discover how people react to you on GitHub. Create and share your Source Karma score card.";
 const socialImage = `${process.env.NEXT_PUBLIC_BASE_URL}/social.png`;
 
 export default function Home() {
@@ -54,7 +55,7 @@ export default function Home() {
 
           <p className="text-gray-700 text-lg text-center sm:text-left sm:text-xl mt-12 sm:mt-8 sm:w-4/5">
             Discover how people react to you on GitHub. Create and share your
-            open-source karma score card.
+            Source Karma score card.
           </p>
 
           <div className="mt-12 flex justify-center sm:justify-start">
@@ -72,10 +73,10 @@ export default function Home() {
         </div>
       </div>
       <h2 className="mt-12 sm:mt-24 text-center text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
-        Here's a preview of what you&apos;ll get 👇
+        Create your Source Karma page
       </h2>
-      <div className="relative mt-16 sm:mt-20">
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white"></div>
+      <div className="relative mt-16 sm:mt-28">
+        <div className="hidden sm:block absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white"></div>
         <div className="flex flex-col items-center sm:items-stretch sm:flex-row space-y-10 sm:space-y-0 sm:justify-center pointer-events-none max-w-6xl mx-auto">
           <Profile
             totalComments={5000}
@@ -104,12 +105,16 @@ export default function Home() {
           <LoginButton />
         </div>
       )}
-      <div className="bg-white mt-10">
-        <div className="max-w-7xl mx-auto pt-16 px-4 sm:pt-24 sm:px-6 lg:px-8">
+      <h2 className="mt-12 sm:mt-40 text-center text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+        Add a GitHub badge to your readme
+      </h2>
+      <Image src="/screenshot.png" width={1443} height={969} />
+      <div className="bg-white">
+        <div className="max-w-7xl mx-auto pt-16 px-4 sm:pt-32 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-extrabold text-gray-900 text-center sm:text-4xl">
             Questions?
           </h2>
-          <div className="mt-12">
+          <div className="mt-12 sm:mt-28">
             <dl className="space-y-10 md:space-y-0 md:grid md:grid-cols-2 md:grid-rows-2 md:gap-x-8 md:gap-y-12 lg:grid-cols-3">
               <div>
                 <dt className="text-lg leading-6 font-medium text-gray-900">

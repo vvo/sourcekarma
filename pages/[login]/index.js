@@ -58,7 +58,7 @@ export default function UserPage({
   const title = `@${login}'s GitHub reactions score card - Source Karma`;
   const url = `${process.env.NEXT_PUBLIC_BASE_URL}/${login}`;
   const description =
-    "Discover how people react to you on GitHub. Create and share your open-source karma score card.";
+    "Discover how people react to you on GitHub. Create and share your Source Karma score card.";
 
   // we will ask the browser to preload those images so we know they are always ready
   const socialImage = `${process.env.NEXT_PUBLIC_OG_BASE_URL}/api/${login}/og`;
