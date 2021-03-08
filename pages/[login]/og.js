@@ -105,7 +105,7 @@ export default function ogBadgePage() {
                             ),
                           }}
                         ></div>
-                        <div className="space-y-2 ml-4 text-2xl font-medium leading-tight text-gray-700 number">
+                        <div className="space-y-2 ml-4 text-2xl font-semibold leading-tight text-gray-700 number">
                           <div>{formatNumber(reactionCount)}</div>
                           <div>
                             {formatNumber(

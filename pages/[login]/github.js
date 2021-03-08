@@ -46,11 +46,11 @@ export default function GitHubBadgePage() {
     <div className="absolute inset-0 flex items-center justify-center">
       <div
         style={{
-          width: "600px",
-          height: "270px",
+          width: "650px",
+          height: "280px",
           borderColor: "#e1e4e8",
         }}
-        className="border rounded-md p-4 bg-white absolute"
+        className="border rounded-md py-6 bg-white absolute"
         data-qa={found === true ? "loaded" : "loading"}
         id="badge"
       >
@@ -93,7 +93,7 @@ export default function GitHubBadgePage() {
                           ),
                         }}
                       ></div>
-                      <div className="space-y-2 ml-4 text-xl font-medium leading-tight text-gray-700 number">
+                      <div className="space-y-2 ml-4 text-xl font-semibold leading-tight text-gray-700 number">
                         <div>{formatNumber(reactionCount)}</div>
                         <div>
                           {formatNumber((reactionCount / totalReactions) * 100)}
