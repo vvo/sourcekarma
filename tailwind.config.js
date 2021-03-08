@@ -12,6 +12,9 @@ module.exports = {
       colors: {
         teal: colors.teal,
       },
+      borderWidth: {
+        14: "14px",
+      },
     },
   },
   variants: {

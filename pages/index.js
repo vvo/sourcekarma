@@ -7,12 +7,12 @@ import Profile from "../components/Profile";
 import PageLayout from "../components/layouts/PageLayout";
 import Head from "next/head";
 
-// dark mode
-// check accessibility measure.dev
-// publish to PH, Show HN, made with next, made with tailwind, twitter rauchg
-
-// show twitter feed on homepage (manually selected tweets)
 // ability to get markdown of a github badge: need to create a different badge (no picture) and another api route, doable
+// check accessibility measure.dev
+
+// dark mode
+// publish to PH, Show HN, made with next, made with tailwind, twitter rauchg
+// show twitter feed on homepage (manually selected tweets)
 // ability to delete account
 
 const title = `Discover how people react to you on GitHub - Source Karma`;
@@ -162,10 +162,19 @@ export default function Home() {
 
               <div>
                 <dt className="text-lg leading-6 font-medium text-gray-900">
-                  What's the tech stack?
+                  What's the product/tech stack?
                 </dt>
                 <dd className="mt-2 text-base text-gray-500">
-                  Next.js, React, Tailwind CSS, Tailwind UI,{" "}
+                  Next.js, React, Tailwind CSS,
+                  <a
+                    href="https://github.com/octokit/graphql.js"
+                    target="_blank"
+                    rel="noopener"
+                    className="underline hover:no-underline hover:text-indigo-500"
+                  >
+                    Octokit
+                  </a>
+                  , Tailwind UI,{" "}
                   <a
                     href="https://craftwork.design"
                     target="_blank"
@@ -183,6 +192,15 @@ export default function Home() {
                     className="underline hover:no-underline hover:text-indigo-500"
                   >
                     Fathom
+                  </a>
+                  , and
+                  <a
+                    href="https://twemoji.twitter.com/"
+                    target="_blank"
+                    rel="noopener"
+                    className="underline hover:no-underline hover:text-indigo-500"
+                  >
+                    twemoji
                   </a>
                   .
                 </dd>
