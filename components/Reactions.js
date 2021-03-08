@@ -6,31 +6,29 @@ import { useEffect, useRef } from "react";
 
 export default function Reactions({ reactions, totalReactions, loading }) {
   return (
-    <div className="sm:w-1/2 flex justify-center">
-      <ul className="grid grid-cols-2 gap-y-6 gap-x-16 sm:gap-x-20">
-        {Object.entries(reactions).map(([reactionName, reactionCount]) => {
-          return (
-            <li className="flex items-center justify-start" key={reactionName}>
-              <div className="w-14 h-14 sm:w-16 sm:h-16 flex items-center justify-center border border-teal-400 rounded-full text-2xl sm:text-3xl">
-                {reactionsMetadata[reactionName].emoji}
+    <ul className="grid grid-cols-2 gap-y-6 gap-x-16 sm:gap-x-20">
+      {Object.entries(reactions).map(([reactionName, reactionCount]) => {
+        return (
+          <li className="flex items-center justify-start" key={reactionName}>
+            <div className="w-14 h-14 sm:w-16 sm:h-16 flex items-center justify-center border border-teal-400 rounded-full text-2xl sm:text-3xl">
+              {reactionsMetadata[reactionName].emoji}
+            </div>
+            <div className="space-y-1 sm:space-y-2 ml-2 sm:ml-4 text-lg sm:text-xl font-medium leading-tight text-gray-700 number">
+              <div className={cx(loading && "loading")}>
+                <Number value={reactionCount} loading={loading} />
               </div>
-              <div className="space-y-1 sm:space-y-2 ml-2 sm:ml-4 text-lg sm:text-xl font-medium leading-tight text-gray-700 number">
-                <div className={cx(loading && "loading")}>
-                  <Number value={reactionCount} loading={loading} />
-                </div>
-                <div className={cx(loading && "loading")}>
-                  <Number
-                    value={(reactionCount / totalReactions) * 100}
-                    loading={loading}
-                  />
-                  %
-                </div>
+              <div className={cx(loading && "loading")}>
+                <Number
+                  value={(reactionCount / totalReactions) * 100}
+                  loading={loading}
+                />
+                %
               </div>
-            </li>
-          );
-        })}
-      </ul>
-    </div>
+            </div>
+          </li>
+        );
+      })}
+    </ul>
   );
 }
 

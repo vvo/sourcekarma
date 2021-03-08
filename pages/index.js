@@ -9,11 +9,12 @@ import LoginButton from "../components/LoginButton";
 import Image from "next/image";
 
 // ability to get markdown of a github badge: need to create a different badge (no picture) and another api route, doable
-// check accessibility measure.dev
+// check accessibility measure.dev of all pages
 // mobile last check
 
-// RT launch tweet
-// with thread comment https://twitter.com/vvoyer/status/1314229290196754439
+// RT launch tweet thread
+// interesting details on how it's made
+// add comment https://twitter.com/vvoyer/status/1314229290196754439
 
 // publish to PH, Show HN, made with next, made with tailwind, twitter rauchg
 // show twitter feed on homepage (manually selected tweets)
@@ -84,20 +85,22 @@ export default function Home() {
             loading={false}
             login="bluebill1049"
           />
-          <Reactions
-            reactions={{
-              THUMBS_UP: 905,
-              THUMBS_DOWN: 20,
-              LAUGH: 84,
-              HOORAY: 186,
-              CONFUSED: 21,
-              HEART: 478,
-              ROCKET: 146,
-              EYES: 53,
-            }}
-            totalReactions={1893}
-            loading={false}
-          />
+          <div className="sm:w-1/2 flex justify-center">
+            <Reactions
+              reactions={{
+                THUMBS_UP: 905,
+                THUMBS_DOWN: 20,
+                LAUGH: 84,
+                HOORAY: 186,
+                CONFUSED: 21,
+                HEART: 478,
+                ROCKET: 146,
+                EYES: 53,
+              }}
+              totalReactions={1893}
+              loading={false}
+            />
+          </div>
         </div>
       </div>
       {!session && (
@@ -176,9 +179,10 @@ export default function Home() {
 
               <div>
                 <dt className="text-lg leading-6 font-medium text-gray-900">
-                  What's the product/tech stack?
+                  What's the product / tech stack?
                 </dt>
                 <dd className="mt-2 text-base text-gray-500">
+                  This website would have been a lot harder to do without:
                   Next.js, React, Tailwind CSS,{" "}
                   <a
                     href="https://github.com/octokit/graphql.js"
@@ -200,21 +204,21 @@ export default function Home() {
                   , PostgreSQL, AWS, Vercel, Puppeteer (for GitHub badges
                   generation),{" "}
                   <a
-                    href="https://usefathom.com/ref/Y8XVBV"
-                    target="_blank"
-                    rel="noopener"
-                    className="underline hover:no-underline hover:text-indigo-500"
-                  >
-                    Fathom
-                  </a>
-                  , and{" "}
-                  <a
                     href="https://twemoji.twitter.com/"
                     target="_blank"
                     rel="noopener"
                     className="underline hover:no-underline hover:text-indigo-500"
                   >
                     twemoji
+                  </a>
+                  , and{" "}
+                  <a
+                    href="https://usefathom.com/ref/Y8XVBV"
+                    target="_blank"
+                    rel="noopener"
+                    className="underline hover:no-underline hover:text-indigo-500"
+                  >
+                    Fathom
                   </a>
                   .
                 </dd>

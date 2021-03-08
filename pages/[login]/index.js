@@ -2,9 +2,12 @@ import { Client } from "pg";
 import { graphql } from "@octokit/graphql";
 import orderBy from "lodash/orderBy";
 import { useRouter } from "next/router";
-import { signIn, useSession } from "next-auth/client";
+import { useSession } from "next-auth/client";
 import GitHubIcon from "../../svg/github.svg";
 import ChevronRightIcon from "../../svg/chevron-right.svg";
+import ChevronDownIcon from "../../svg/chevron-down.svg";
+import ClipboardCopyIcon from "../../svg/clipboard-copy.svg";
+import ClipboardCheckIcon from "../../svg/clipboard-check.svg";
 import TwitterLogo from "../../svg/twitter.svg";
 import cx from "classnames";
 import Header from "../../components/Header.js";
@@ -15,6 +18,9 @@ import formatNumber from "../../lib/formatNumber.js";
 import Head from "next/head";
 import PageLayout from "../../components/layouts/PageLayout";
 import LoginButton from "../../components/LoginButton";
+import { useState } from "react";
+import { CopyToClipboard } from "react-copy-to-clipboard";
+import Image from "next/image";
 
 const reactionsReleaseDate = "2016-03-10T00:00:00Z";
 
@@ -62,12 +68,11 @@ export default function UserPage({
 
   // we will ask the browser to preload those images so we know they are always ready
   const socialImage = `${process.env.NEXT_PUBLIC_OG_BASE_URL}/api/${login}/og`;
-  const githubImage = `${process.env.NEXT_PUBLIC_OG_BASE_URL}/api/${login}/github`;
+  const gitHubImage = `${process.env.NEXT_PUBLIC_OG_BASE_URL}/api/${login}/github`;
 
   return (
     <div className={cx("sm:pt-8", loading && "overflow-y-scroll")}>
       <Head>
-        <meta name="robots" content="noindex" />
         <title>{title}</title>
         {!loading && (
           <>
@@ -88,7 +93,7 @@ export default function UserPage({
             />
             <link
               rel="prefetch"
-              href={githubImage}
+              href={gitHubImage}
               as="image"
               type="image/png"
             />
@@ -100,7 +105,6 @@ export default function UserPage({
         <Header />
         {loading && (
           <div className="text-gray-700 text-lg text-center mb-20 p-5 sm:p-10 rounded-2xl border sm:mx-10 shadow-md">
-            {/* <div className="absolute inset-0 loading z-0 opacity-50 rounded-full"></div> */}
             <p className="relative z-10">
               ⏳ Please wait while we&apos;re generating this page. It can take
               up to 30 seconds. <br />
@@ -148,31 +152,38 @@ export default function UserPage({
             loading={loading}
             login={login}
             hadError={hadError}
+            isCurrentUser={isCurrentUser}
           />
-          <Reactions
-            reactions={reactions}
-            totalReactions={totalReactions}
-            loading={loading}
-          />
-        </div>
-        {hadError && (
-          <p className="mt-10 sm:-mb-10 text-sm text-center text-gray-500">
-            ⚠️ Our crawler stopped early <br className="sm:hidden" />
-            because of a{" "}
-            <a
-              href="https://github.com/vvo/sourcekarma/issues/1"
-              target="_blank"
-              rel="noopener"
-              className="underline hover:no-underline hover:text-indigo-500"
-            >
-              GitHub bug
-            </a>
-          </p>
-        )}
-        {isCurrentUser && !loading && (
-          <div className="text-center relative top-12 sm:top-20 h-0">
-            <Tweet totalComments={totalComments} reactions={reactions} />
+          <div className="sm:w-1/2 flex flex-col justify-center items-center">
+            <Reactions
+              reactions={reactions}
+              totalReactions={totalReactions}
+              loading={loading}
+            />
+            {hadError && isCurrentUser && (
+              <p className="mt-10 sm:text-right text-sm text-center text-gray-500">
+                ⚠️ Our crawler stopped early <br className="sm:hidden" />
+                because of a{" "}
+                <a
+                  href="https://github.com/vvo/sourcekarma/issues/1"
+                  target="_blank"
+                  rel="noopener"
+                  className="underline hover:no-underline hover:text-indigo-500"
+                >
+                  GitHub bug
+                </a>
+              </p>
+            )}
           </div>
+        </div>
+
+        {isCurrentUser && !loading && (
+          <>
+            <GitHubBadge login={login} gitHubImage={gitHubImage} url={url} />
+            <div className="text-center relative top-12 sm:top-20 h-0">
+              <Tweet totalComments={totalComments} reactions={reactions} />
+            </div>
+          </>
         )}
       </div>
       {!loading && (
@@ -200,6 +211,64 @@ export default function UserPage({
 UserPage.getLayout = function getLayout(page) {
   return <PageLayout>{page}</PageLayout>;
 };
+
+function GitHubBadge({ login, gitHubImage, url }) {
+  const [isOpen, setIsOpen] = useState(false);
+  const [isCopied, setIsCopied] = useState(false);
+  const markdown = `[![Source Karma badge for @#{login}](${gitHubImage})](${url})`;
+
+  return (
+    <div className="mt-20 mx-auto text-gray-700">
+      <p
+        className="text-center text-lg flex items-center justify-center cursor-pointer"
+        onClick={() => {
+          setIsOpen(!isOpen);
+        }}
+      >
+        <GitHubIcon className="h-6 w-6 inline align-top mr-2" /> GitHub badge{" "}
+        {isOpen ? (
+          <ChevronDownIcon className="h-6 w-6 inline ml-1" />
+        ) : (
+          <ChevronRightIcon className="h-6 w-6 inline ml-1" />
+        )}
+      </p>
+      {isOpen && (
+        <>
+          <div className="mt-6 text-center">
+            <img
+              width={495}
+              height={230}
+              src={gitHubImage}
+              alt={`Source Karma GitHub badge for ${login}`}
+              className="inline"
+            />
+          </div>
+          <CopyToClipboard text={markdown} onCopy={() => setIsCopied(true)}>
+            <div
+              className="flex mx-auto items-center mt-2 cursor-pointer"
+              style={{ maxWidth: "495px" }}
+            >
+              {isCopied ? (
+                <ClipboardCheckIcon className="h-7 w-7 mr-2" />
+              ) : (
+                <ClipboardCopyIcon className="h-7 w-7 mr-2" />
+              )}
+              <input
+                type="text"
+                className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md flex-grow"
+                value={markdown}
+                onClick={(event) => {
+                  event.target.select();
+                }}
+              />
+            </div>
+          </CopyToClipboard>
+          {isCopied && <p className="text-center mt-1">Copied!</p>}
+        </>
+      )}
+    </div>
+  );
+}
 
 function CommentsSections({
   mostPopularComments,
@@ -232,7 +301,7 @@ function CommentsSections({
 
       <CommentSection
         comments={leastPopularComments}
-        title="Less popular comments"
+        title="Controversial comments"
         reactions={negativeReactions}
       />
 
