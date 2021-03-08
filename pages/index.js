@@ -190,7 +190,7 @@ export default function Home() {
                   </a>
                   , Tailwind UI,{" "}
                   <a
-                    href="https://craftwork.design"
+                    href="https://craftwork.design/downloads/category/illustrations/?ref=87&campaign=Websitelink"
                     target="_blank"
                     rel="noopener"
                     className="underline hover:no-underline hover:text-indigo-500"
