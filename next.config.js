@@ -13,11 +13,4 @@ module.exports = {
     locales: ["en-US"],
     defaultLocale: "en-US",
   },
-  images: {
-    domains: [
-      "sourcekarma.vercel.app",
-      "localhost",
-      "sourcekarma-dev.eu.ngrok.io",
-    ],
-  },
 };
