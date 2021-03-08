@@ -55,7 +55,12 @@ export default function UserPage({
   hadError = false,
 }) {
   const router = useRouter();
-  const { login = "octocat" } = router.query;
+  let { login = "octocat" } = router.query;
+
+  if (login === "[login]") {
+    login = "octocat";
+  }
+
   // router.isFallback = true;
   const loading = router.isFallback === true;
   const [session] = useSession();
