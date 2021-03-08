@@ -82,8 +82,22 @@ export default function UserPage({
         <meta content={socialImage} property="og:image" />
         <meta content={url} property="og:url" />
         <meta content="summary_large_image" property="twitter:card" />
-        <link rel="prefetch" href={socialImage} as="image" type="image/png" />
-        <link rel="prefetch" href={gitHubImage} as="image" type="image/png" />
+        {!loading && (
+          <>
+            <link
+              rel="preload"
+              href={socialImage}
+              as="image"
+              type="image/png"
+            />
+            <link
+              rel="preload"
+              href={gitHubImage}
+              as="image"
+              type="image/png"
+            />
+          </>
+        )}
       </Head>
 
       <div className="max-w-screen-lg mx-auto px-2.5 relative">
