@@ -58,22 +58,41 @@ export default function UserPage({
   const url = `${process.env.NEXT_PUBLIC_BASE_URL}/${login}`;
   const description =
     "Discover how people react to you on GitHub. Create and share your open-source karma score card.";
-  const socialImage = `${process.env.NEXT_PUBLIC_OG_BASE_URL}/${login}`;
+
+  // we will ask the browser to preload those images so we know they are always ready
+  const socialImage = `${process.env.NEXT_PUBLIC_OG_BASE_URL}/${login}/og`;
+  const githubImage = `${process.env.NEXT_PUBLIC_OG_BASE_URL}/${login}/github`;
 
   return (
     <div className={cx("sm:pt-8", loading && "overflow-y-scroll")}>
       <Head>
         <meta name="robots" content="noindex" />
         <title>{title}</title>
-        <link href={url} rel="canonical" />
-        <meta content={title} name="title" />
-        <meta content={description} name="description" />
-        <meta content="website" property="og:type" />
-        <meta content={title} property="og:title" />
-        <meta content={description} property="og:description" />
-        <meta content={socialImage} property="og:image" />
-        <meta content={url} property="og:url" />
-        <meta content="summary_large_image" property="twitter:card" />
+        {!loading && (
+          <>
+            <link href={url} rel="canonical" />
+            <meta content={title} name="title" />
+            <meta content={description} name="description" />
+            <meta content="website" property="og:type" />
+            <meta content={title} property="og:title" />
+            <meta content={description} property="og:description" />
+            <meta content={socialImage} property="og:image" />
+            <meta content={url} property="og:url" />
+            <meta content="summary_large_image" property="twitter:card" />
+            <link
+              rel="preload"
+              href={socialImage}
+              as="image"
+              type="image/png"
+            />
+            <link
+              rel="preload"
+              href={githubImage}
+              as="image"
+              type="image/png"
+            />
+          </>
+        )}
       </Head>
 
       <div className="max-w-screen-lg mx-auto px-2.5 relative">

@@ -33,7 +33,7 @@ export default async function ogScreenshot(req, res) {
     res.setHeader("content-type", "image/png");
     res.setHeader(
       "cache-control",
-      `public, max-age=${process.env.CACHE_IN_SECONDS}, s-maxage=60, stale-while-revalidate`
+      `public, max-age=${process.env.CACHE_IN_SECONDS}, s-maxage=1200, stale-while-revalidate`
     );
     res.end(screenshot);
   } catch (error) {
