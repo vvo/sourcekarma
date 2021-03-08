@@ -13,7 +13,7 @@ module.exports = {
         teal: colors.teal,
       },
       borderWidth: {
-        14: "14px",
+        18: "18px",
       },
     },
   },

@@ -10,6 +10,10 @@ import LoginButton from "../components/LoginButton";
 // dark mode
 // ability to get markdown of a github badge: need to create a different badge (no picture) and another api route, doable
 // check accessibility measure.dev
+// mobile last check
+
+// RT launch tweet
+// with thread comment https://twitter.com/vvoyer/status/1314229290196754439
 
 // publish to PH, Show HN, made with next, made with tailwind, twitter rauchg
 // show twitter feed on homepage (manually selected tweets)
@@ -165,7 +169,7 @@ export default function Home() {
                   What's the product/tech stack?
                 </dt>
                 <dd className="mt-2 text-base text-gray-500">
-                  Next.js, React, Tailwind CSS,
+                  Next.js, React, Tailwind CSS,{" "}
                   <a
                     href="https://github.com/octokit/graphql.js"
                     target="_blank"
@@ -183,8 +187,8 @@ export default function Home() {
                   >
                     craftwork.design
                   </a>
-                  , PostgreSQL, AWS, Vercel, Puppeteer (for the opengraph
-                  images!),{" "}
+                  , PostgreSQL, AWS, Vercel, Puppeteer (for GitHub badges
+                  generation),{" "}
                   <a
                     href="https://usefathom.com/ref/Y8XVBV"
                     target="_blank"
@@ -193,7 +197,7 @@ export default function Home() {
                   >
                     Fathom
                   </a>
-                  , and
+                  , and{" "}
                   <a
                     href="https://twemoji.twitter.com/"
                     target="_blank"
@@ -265,7 +269,7 @@ function YourPageButton({ login }) {
             className="-ml-1 mr-3 h-7 w-7 rounded-full"
             alt={`GitHub avatar for ${login}`}
           />
-          See your page
+          Your page
         </button>
       </a>
     </Link>
