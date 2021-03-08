@@ -14,11 +14,10 @@ import cx from "classnames";
 
 // TODO:
 // nudge GitHub
-// show twitter feed on homepage (manually selected tweets)
+// publish to PH
 // publish to newsletters, which ones?
 // ability to delete account
 // dark mode
-// publish to PH, Show HN, made with next, made with tailwind, twitter rauchg
 
 const title = `Discover how people react to you on GitHub - Source Karma`;
 const url = `${process.env.NEXT_PUBLIC_BASE_URL}`;
