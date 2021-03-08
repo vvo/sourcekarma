@@ -7,7 +7,6 @@ import PageLayout from "../components/layouts/PageLayout";
 import Head from "next/head";
 import LoginButton from "../components/LoginButton";
 
-// loaders on github buttons
 // dark mode
 // ability to get markdown of a github badge: need to create a different badge (no picture) and another api route, doable
 // check accessibility measure.dev

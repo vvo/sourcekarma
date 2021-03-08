@@ -46,7 +46,7 @@ export default function ogBadgePage() {
     <div className="absolute inset-0 flex items-center justify-center">
       <div
         style={{
-          width: "1200px",
+          width: "1260px",
           height: "630px",
         }}
         className="border-14 flex border-teal-600 bg-teal-600 relative"
