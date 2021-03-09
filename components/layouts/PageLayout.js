@@ -29,6 +29,21 @@ export default function PageLayout({ children, ...pageProps }) {
 
   return (
     <Provider session={pageProps.session}>
+      <div className="flex justify-center mt-10">
+        <a
+          href="https://www.producthunt.com/posts/source-karma?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-source-karma"
+          target="_blank"
+          rel="noopener"
+        >
+          <img
+            src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=287551&theme=light"
+            alt="Source Karma - Discover how people react to you on GitHub | Product Hunt"
+            style={{ width: "250px", height: "54px" }}
+            width="250"
+            height="54"
+          />
+        </a>
+      </div>
       {children}
       <div className="relative h-1 mx-auto mt-12 sm:mt-20 pt-6">
         <div

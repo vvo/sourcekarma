@@ -110,13 +110,13 @@ export default function Home() {
           <Tweet tweetId="1368957988900380673" />
         </div>
         <div>
-          <Tweet tweetId="1368955214695436294" />
+          <Tweet tweetId="1369136339908784129" />
         </div>
         <div className="hidden md:block">
           <Tweet tweetId="1368996709120962561" />
         </div>
         <div className="hidden xl:block">
-          <Tweet tweetId="1369018090978091012" />
+          <Tweet tweetId="1368955214695436294" />
         </div>
         <div className="hidden xl:block">
           <Tweet tweetId="1368992902731431939" />
@@ -277,7 +277,7 @@ function LoginButtons() {
   return (
     <>
       <LoginButton />
-      <Link href="/vvo">
+      <Link href="/bluebill1049">
         <a className="inline-flex">
           <button
             type="button"
