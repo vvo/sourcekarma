@@ -9,6 +9,7 @@ module.exports = {
     // Important: return the modified config
     return config;
   },
+  experimental: { optimizeCss: true },
   i18n: {
     locales: ["en-US"],
     defaultLocale: "en-US",

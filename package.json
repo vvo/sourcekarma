@@ -15,6 +15,7 @@
     "@tailwindcss/typography": "0.4.0",
     "autoprefixer": "10.2.5",
     "classnames": "2.2.6",
+    "critters": "^0.0.8",
     "fathom-client": "3.0.0",
     "lodash": "4.17.21",
     "next": "10.0.8",
