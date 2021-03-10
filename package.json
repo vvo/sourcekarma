@@ -8,7 +8,7 @@
     "start": "next start"
   },
   "dependencies": {
-    "@octokit/graphql": "4.6.0",
+    "@octokit/graphql": "4.6.1",
     "@svgr/webpack": "5.5.0",
     "@tailwindcss/aspect-ratio": "0.2.0",
     "@tailwindcss/forms": "0.2.1",
@@ -20,7 +20,7 @@
     "next": "10.0.8",
     "next-auth": "3.11.2",
     "pg": "8.5.1",
-    "postcss": "8.2.7",
+    "postcss": "8.2.8",
     "react": "17.0.1",
     "react-copy-to-clipboard": "^5.0.3",
     "react-countup": "4.3.3",
