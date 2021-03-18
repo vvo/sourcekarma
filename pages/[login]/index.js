@@ -513,15 +513,15 @@ export async function getStaticProps(context) {
 
     const mostPopularComments = orderBy(comments, "positiveReactions", "desc")
       .filter((comment) => comment.positiveReactions > 0)
-      .slice(0, 5);
+      .slice(0, 10);
 
     const leastPopularComments = orderBy(comments, "negativeReactions", "desc")
       .filter((comment) => comment.negativeReactions > 0)
-      .slice(0, 5);
+      .slice(0, 10);
 
     const funniestComments = orderBy(comments, "funnyReactions", "desc")
       .filter((comment) => comment.funnyReactions > 0)
-      .slice(0, 5);
+      .slice(0, 10);
 
     // require("fs").writeFileSync(
     //   "demo.json",
