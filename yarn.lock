@@ -1869,7 +1869,7 @@ create-hmac@^1.1.0, create-hmac@^1.1.4, create-hmac@^1.1.7:
     safe-buffer "^5.0.1"
     sha.js "^2.4.8"
 
-critters@^0.0.9:
+critters@0.0.9:
   version "0.0.9"
   resolved "https://registry.yarnpkg.com/critters/-/critters-0.0.9.tgz#1a000ad42527ee5fdd08905dafdb15ded8c906f2"
   integrity sha512-8aMHzByeuPiNi8mtx6CwPAHm9TIJHfB3en4VylqRhMVegnTL3A+BJssrmSiGTj8B0DQGWlafq3Q31GLElpBVBw==
@@ -2768,9 +2768,9 @@ jest-worker@24.9.0:
     supports-color "^6.1.0"
 
 jose@^1.27.2:
-  version "1.28.0"
-  resolved "https://registry.yarnpkg.com/jose/-/jose-1.28.0.tgz#0803f8c71f43cd293a9d931c555c30531f5ca5dc"
-  integrity sha512-JmfDRzt/HSj8ipd9TsDtEHoLUnLYavG+7e8F6s1mx2jfVSfXOTaFQsJUydbjJpTnTDHP1+yKL9Ke7ktS/a0Eiw==
+  version "1.28.1"
+  resolved "https://registry.yarnpkg.com/jose/-/jose-1.28.1.tgz#34a0f851a534be59ffab82a6e8845f6874e8c128"
+  integrity sha512-6JK28rFu5ENp/yxMwM+iN7YeaInnY9B9Bggjkz5fuwLiJhbVrl2O4SJr65bdNBPl9y27fdC3Mymh+FVCvozLIg==
   dependencies:
     "@panva/asn1.js" "^1.0.0"
 
@@ -3866,7 +3866,7 @@ raw-body@2.4.1:
     iconv-lite "0.4.24"
     unpipe "1.0.0"
 
-react-copy-to-clipboard@^5.0.3:
+react-copy-to-clipboard@5.0.3:
   version "5.0.3"
   resolved "https://registry.yarnpkg.com/react-copy-to-clipboard/-/react-copy-to-clipboard-5.0.3.tgz#2a0623b1115a1d8c84144e9434d3342b5af41ab4"
   integrity sha512-9S3j+m+UxDZOM0Qb8mhnT/rMR0NGSrj9A/073yz2DSxPMYhmYFBMYIdI2X4o8AjOjyFsSNxDRnCX6s/gRxpriw==
@@ -3917,7 +3917,7 @@ react-test-renderer@^16.0.0-0:
     react-is "^16.8.6"
     scheduler "^0.19.1"
 
-react-twitter-embed@^3.0.3:
+react-twitter-embed@3.0.3:
   version "3.0.3"
   resolved "https://registry.yarnpkg.com/react-twitter-embed/-/react-twitter-embed-3.0.3.tgz#a534132d4bbec812a63e3899dc716de2bfc3cec2"
   integrity sha512-kF1Srlb1TqnZUqKA0FC4I/E+m+RUBCMZeU20hDRzmYLAjR1EA/6tr/PMZ22s7rd6wjQpIBLXNZjt0rfUpY8Chw==
@@ -4514,7 +4514,7 @@ twemoji-parser@13.0.0:
   resolved "https://registry.yarnpkg.com/twemoji-parser/-/twemoji-parser-13.0.0.tgz#bd9d1b98474f1651dc174696b45cabefdfa405af"
   integrity sha512-zMaGdskpH8yKjT2RSE/HwE340R4Fm+fbie4AaqjDa4H/l07YUmAvxkSfNl6awVWNRRQ0zdzLQ8SAJZuY5MgstQ==
 
-twemoji@^13.0.2:
+twemoji@13.0.2:
   version "13.0.2"
   resolved "https://registry.yarnpkg.com/twemoji/-/twemoji-13.0.2.tgz#e7ee8d26fd0ccc23a0afe68c7b7e61bd8d14ad24"
   integrity sha512-R9tDS4pEVczjVYM5SvoAJ0AcZ4EgG1h3yw1oi1m/yrXOH17OOjaaRxZU4r5TIHEy3xYbuZQLB/tJZyC6rpQVmA==
