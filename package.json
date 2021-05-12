@@ -21,7 +21,7 @@
     "next": "10.0.9",
     "next-auth": "3.13.1",
     "pg": "8.5.1",
-    "postcss": "8.2.8",
+    "postcss": "8.2.10",
     "react": "17.0.1",
     "react-copy-to-clipboard": "5.0.3",
     "react-countup": "4.3.3",
