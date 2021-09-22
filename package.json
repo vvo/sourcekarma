@@ -35,5 +35,15 @@
   ],
   "engines": {
     "node": "14.x"
+  },
+  "renovate": {
+    "extends": [
+      "config:js-app"
+    ],
+    "timezone": "Europe/Paris",
+    "schedule": [
+      "before 3am on Monday"
+    ],
+    "groupName": "all"
   }
 }
