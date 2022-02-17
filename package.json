@@ -18,7 +18,7 @@
     "critters": "0.0.10",
     "fathom-client": "3.2.0",
     "lodash": "4.17.21",
-    "next": "11.1.2",
+    "next": "12.1.0",
     "next-auth": "3.29.0",
     "pg": "8.7.1",
     "postcss": "8.3.7",
