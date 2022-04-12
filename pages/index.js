@@ -42,14 +42,6 @@ export default function Home() {
         <meta content={url} property="og:url" />
         <meta content="summary_large_image" property="twitter:card" />
       </Head>
-      <div className="text-center font-bold py-4 text-xl bg-red-200 my-10">
-        SourceKarma is currently disabled as I have no time to maintain it. If
-        you want to maintain this project,{" "}
-        <a href="https://twitter.com/vvoyer" className="underline">
-          let me know
-        </a>
-        !
-      </div>
       <div className="flex sm:flex-row sm:items-center flex-col-reverse">
         <div className="sm:w-1/2">
           <Link href="/">

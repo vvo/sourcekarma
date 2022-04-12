@@ -31,7 +31,14 @@ function MyApp({ Component, pageProps }) {
           type="font/woff2"
         />
       </Head>
-
+      <div className="text-center font-bold py-4 text-xl bg-red-200 my-10">
+        SourceKarma is currently disabled as I have no time to maintain it. If
+        you want to maintain this project,{" "}
+        <a href="https://twitter.com/vvoyer" className="underline">
+          let me know
+        </a>
+        !
+      </div>
       {Component.getLayout ? (
         Component.getLayout(<Component {...pageProps} />)
       ) : (
