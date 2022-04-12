@@ -1,5 +1,5 @@
 <p align="center"><b>SourceKarma is currently disabled as I have no time to maintain it. If
-you want to maintain this project,{" "}
+you want to maintain this project,
 <a href="https://twitter.com/vvoyer" className="underline">
   let me know
 </a>
